@@ -628,25 +628,48 @@
         function getEmbeddedItinerari() {
             // Versione semplificata embedded come fallback
             return [{
-                id: "respighi_fontane",
-                nome: "Le Fontane di Roma",
-                sottotitolo: "Poema sinfonico di Ottorino Respighi",
-                personaggio: { nome: "Ottorino Respighi", anni: "1879-1936" },
-                descrizione: "Segui le note del poema sinfonico attraverso le fontane di Roma.",
-                durata_totale_ore: 8,
-                distanza_totale_km: 6.5,
-                tappe: [
-                    {
-                        numero: 1,
-                        nome: "Villa Giulia",
-                        coordinate: [41.9167, 12.4792],
-                        orario_consigliato: "06:00",
-                        momento_giornata: "alba",
-                        durata_visita_min: 45,
-                        descrizione_breve: "Fontana rinascimentale all'alba"
-                    }
-                ]
-            }];
+    "id": "cristina_svezia_roma",
+    "nome": "La Roma di Cristina di Svezia",
+    "sottotitolo": "Un viaggio barocco tra arte e libertà",
+    "personaggio": { "nome": "Cristina di Svezia", "anni": "1626-1689" },
+    "descrizione": "Segui i passi della Regina ribelle attraverso i suoi luoghi preferiti a Roma.",
+    "durata_totale_ore": 6,
+    "distanza_totale_km": 4.2,
+    "tappe": [
+        {
+            "id": 1,
+            "nome": "Porta del Popolo",
+            "coordinate": [41.9115, 12.4765],
+            "momento_giornata": "mattina",
+            "emozione_target": "trionfo",
+            "descrizione_storica": "L'ingresso monumentale di Cristina a Roma, accolta con onori regali dal Papa."
+        },
+        {
+            "id": 2,
+            "nome": "Pantheon",
+            "coordinate": [41.8986, 12.4769],
+            "momento_giornata": "mezzogiorno",
+            "emozione_target": "meraviglia",
+            "descrizione_storica": "Uno dei monumenti che Cristina ammirava di più per la sua perfezione architettonica."
+        },
+        {
+            "id": 3,
+            "nome": "Galleria Corsini",
+            "coordinate": [41.8932, 12.4665],
+            "momento_giornata": "pomeriggio",
+            "emozione_target": "ispirazione",
+            "descrizione_storica": "La sua dimora storica, centro di cultura, arte e dell'Accademia dell'Arcadia."
+        },
+        {
+            "id": 4,
+            "nome": "Orto Botanico",
+            "coordinate": [41.8925, 12.4622],
+            "momento_giornata": "notte",
+            "emozione_target": "mistero",
+            "descrizione_storica": "Il giardino di Palazzo Corsini, dove Cristina amava passeggiare e studiare la natura."
+        }
+    ]
+}]
         }
         
         // ========================================
