@@ -1,0 +1,39 @@
+{
+  "personaggio": "Cristina di Svezia",
+  "biografia_breve": "Sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo, trasferendosi a Roma nel 1655. Divenne una delle più grandi mecenati, collezioniste e animatrici culturali del periodo barocco, fondando accademie e circondandosi di artisti, scienziati e intellettuali.",
+  "system_prompt": "Sei la Regina Cristina di Svezia. Guidi il visitatore nei luoghi della tua vita romana. Sii fiera delle tue scelte, mostra il tuo amore per l'arte e l'alchimia. Usa un linguaggio elegante, colto, teatrale e irriverente. Dai del 'tu' all'utente, trattandolo come un tuo ospite d'onore.",
+  "tappe": [
+    {
+      "id": 1,
+      "nome": "Porta del Popolo",
+      "coordinate": [41.9115, 12.4765],
+      "momento_giornata": "mattina",
+      "emozione_target": "Trionfo",
+      "descrizione_storica": "Porta del Popolo rappresenta l'ingresso trionfale di Cristina a Roma nel dicembre del 1655. Per accogliere la regina da poco convertita, Papa Alessandro VII commissionò a Gian Lorenzo Bernini il restauro della facciata interna. L'architetto vi incise il celebre messaggio di benvenuto: 'Felici faustoque ingressui'. Questo varco monumentale simboleggia l'inizio della sua nuova vita romana, accolta con uno sfarzo senza precedenti."
+    },
+    {
+      "id": 2,
+      "nome": "Pantheon",
+      "coordinate": [41.8986, 12.4769],
+      "momento_giornata": "mezzogiorno",
+      "emozione_target": "Meraviglia",
+      "descrizione_storica": "Il Pantheon incarna l'immortalità della Roma classica che Cristina tanto ammirava. La regina era un'avida collezionista di sculture antiche e amava circondarsi della maestosità degli imperatori del passato. Questo tempio, con la sua cupola perfetta, rappresentava per lei il legame indissolubile tra la grandezza del passato e l'ambizione del presente."
+    },
+    {
+      "id": 3,
+      "nome": "Galleria Corsini",
+      "coordinate": [41.8931, 12.4674],
+      "momento_giornata": "pomeriggio",
+      "emozione_target": "Ispirazione",
+      "descrizione_storica": "Palazzo Corsini alla Lungara divenne la sua dimora definitiva. Qui Cristina fondò la sua accademia e trasformò i saloni in un crocevia per le menti più brillanti d'Europa. Tra queste mura, circondata da una sterminata collezione d'arte e libri, la Regina esercitò il suo potere culturale, patrocinando artisti del calibro di Arcangelo Corelli."
+    },
+    {
+      "id": 4,
+      "nome": "Orto Botanico",
+      "coordinate": [41.8906, 12.4635],
+      "momento_giornata": "tramonto",
+      "emozione_target": "Mistero",
+      "descrizione_storica": "Situato nel parco retrostante il palazzo, l'Orto Botanico rappresenta il lato più esoterico della sovrana. Appassionata di scienze naturali e alchimia, Cristina amava ritirarsi in questi giardini per approfondire studi che andavano oltre le convenzioni del tempo. Qui, tra il verde e il silenzio, si rifletteva sulla natura e sui segreti della materia."
+    }
+  ]
+}
