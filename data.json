@@ -27,7 +27,12 @@
                 "emozione_target": "Trionfo",
                 "immagine": "https://images.unsplash.com/photo-1600623471616-b119b4a90e27?q=80&w=600",
                 "descrizione_breve": "L'ingresso trionfale della Regina.",
-                "descrizione": "Papa Alessandro VII commissionò al Bernini il restauro della facciata interna per accoglierla."
+                "descrizione": "Papa Alessandro VII commissionò al Bernini il restauro della facciata interna per accoglierla.",
+              "musica": {
+            "movimento": "Sinfonia Trionfale",
+            "descrizione_musicale": "Un ingresso maestoso richiede un'accoglienza reale. Le note squillanti e festive di Alessandro Scarlatti, che in seguito lavorò proprio al servizio di Cristina, celebrano il suo arrivo nell'Urbe.",
+            "file_audio": "tappa1_ingresso.mp3"
+          }
             },
             {
                 "numero": 2,
@@ -40,7 +45,12 @@
                 "emozione_target": "Meraviglia",
                 "immagine": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=600",
                 "descrizione_breve": "L'immortalità della Roma classica.",
-                "descrizione": "La regina amava circondarsi della maestosità degli imperatori del passato."
+                "descrizione": "La regina amava circondarsi della maestosità degli imperatori del passato.",
+              "musica": {
+            "movimento": "Echi dell'Antichità",
+            "descrizione_musicale": "Il suono solenne e dilatato dell'organo di Girolamo Frescobaldi. Una musica sacra e sospesa che sembra salire dritta verso l'Oculo, perdendosi nel cielo di Roma.",
+            "file_audio": "tappa2_pantheon.mp3"
+          }
             },
             {
                 "numero": 3,
@@ -53,7 +63,12 @@
                 "emozione_target": "Ispirazione",
                 "immagine": "https://images.unsplash.com/photo-1621501675128-87779f00a5d5?q=80&w=600",
                 "descrizione_breve": "La dimora definitiva della Regina.",
-                "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale."
+                "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale.",
+              "musica": {
+            "movimento": "Sonata da Chiesa a Tre",
+            "descrizione_musicale": "Arcangelo Corelli era il musicista preferito della Regina. Chiudi gli occhi: le sue sonate venivano eseguite dal vivo proprio in questi saloni durante le riunioni della sua Accademia.",
+            "file_audio": "tappa3_corsini.mp3"
+          }
             },
             {
                 "numero": 4,
@@ -66,7 +81,12 @@
                 "emozione_target": "Mistero",
                 "immagine": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600",
                 "descrizione_breve": "Il lato esoterico tra scienza e alchimia.",
-                "descrizione": "Cristina amava ritirarsi in questi giardini per approfondire studi di scienze naturali."
+                "descrizione": "Cristina amava ritirarsi in questi giardini per approfondire studi di scienze naturali.",
+              "musica": {
+            "movimento": "Toccata Arpeggiata per Tiorba",
+            "descrizione_musicale": "Le note intime, ipnotiche e misteriose della tiorba accompagnano il tramonto. È il suono perfetto per i ritiri solitari di Cristina tra i segreti dell'alchimia e della botanica.",
+            "file_audio": "tappa4_orto.mp3"
+          }
       ]
     }
   ]
