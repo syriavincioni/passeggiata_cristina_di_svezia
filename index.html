@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeggiate Romane - Itinerari Tematici</title>
+    <title>Passeggiate Romane - Cristina di Svezia</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
-        /* === VARIABILI E TEMA REGALE === */
+        /* =========================================
+           1. VARIABILI E COLORI (TEMA CRISTINA)
+           ========================================= */
         :root {
-            --primary: #5d1010;   /* Bordeaux */
-            --accent: #a68a56;    /* Oro */
-            --bg: #fdfcf0;        /* Crema antico */
-            --dark: #2a0505;      /* Nero velluto */
+            --primary: #5d1010;   /* Bordeaux Regale */
+            --accent: #a68a56;    /* Oro Barocco */
+            --bg: #fdfcf0;        /* Crema Antico */
+            --dark: #2a0505;      /* Nero Velluto */
             --white: #ffffff;
-            --shadow: 0 8px 30px rgba(0,0,0,0.15);
+            --shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         body {
@@ -23,9 +25,12 @@
             background-color: var(--bg);
             margin: 0;
             color: #333;
+            line-height: 1.6;
         }
 
-        /* === NAVBAR === */
+        /* =========================================
+           2. NAVBAR SUPERIORE
+           ========================================= */
         #navbar {
             background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
             color: var(--accent);
@@ -34,7 +39,7 @@
             justify-content: space-between;
             align-items: center;
             height: 70px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             border-bottom: 3px solid var(--accent);
             position: sticky;
             top: 0;
@@ -52,14 +57,17 @@
             cursor: pointer;
             transition: all 0.3s;
             font-family: 'Georgia', serif;
+            font-weight: bold;
         }
 
         #nav-buttons button:hover {
             background: var(--accent);
-            color: white;
+            color: var(--white);
         }
 
-        /* === HOME VIEW === */
+        /* =========================================
+           3. HOME PAGE (SCELTA ITINERARI)
+           ========================================= */
         #home-view {
             padding: 60px 20px;
             max-width: 1200px;
@@ -69,7 +77,7 @@
 
         #home-view h2 {
             text-align: center;
-            font-size: 3em;
+            font-size: 2.8em;
             color: var(--primary);
             margin-bottom: 10px;
         }
@@ -79,20 +87,21 @@
             color: #7f8c8d;
             margin-bottom: 50px;
             font-style: italic;
+            font-size: 1.2em;
         }
 
         .itinerari-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
         }
 
         .itinerario-card {
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: all 0.3s;
+            transition: transform 0.3s;
             cursor: pointer;
             border: 1px solid rgba(166, 138, 86, 0.2);
         }
@@ -111,46 +120,38 @@
             top: 15px;
             right: 15px;
             background: var(--primary);
-            color: white;
+            color: var(--white);
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.8em;
+            font-size: 0.85em;
             font-weight: bold;
             border: 1px solid var(--accent);
         }
 
         .card-content { padding: 30px; }
-        .card-content h3 { color: var(--primary); font-size: 1.8em; margin: 0 0 10px 0; }
+        .card-content h3 { color: var(--primary); font-size: 1.6em; margin: 0 0 10px 0; }
         
         .card-stats {
             display: flex;
             justify-content: space-around;
-            padding: 20px 0;
+            padding: 20px 0 0 0;
             border-top: 1px solid #eee;
             margin-top: 20px;
         }
 
-        .stat-value { color: var(--primary); font-weight: bold; font-size: 1.2em; display: block; }
+        .stat { text-align: center; }
+        .stat-value { color: var(--primary); font-weight: bold; font-size: 1.3em; display: block; }
         .stat-label { font-size: 0.8em; color: #999; text-transform: uppercase; }
 
-        .card-button {
-            width: 100%;
-            padding: 15px;
-            background: var(--primary);
-            color: var(--white);
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        /* === ITINERARY VIEW === */
+        /* =========================================
+           4. VISTA ITINERARIO E MAPPA
+           ========================================= */
         #itinerary-view { display: flex; height: calc(100vh - 70px); }
 
         #timeline-sidebar {
             width: 320px;
             background: linear-gradient(180deg, var(--dark) 0%, var(--primary) 100%);
-            color: white;
+            color: var(--white);
             padding: 25px;
             overflow-y: auto;
             border-right: 3px solid var(--accent);
@@ -161,28 +162,41 @@
         #map { width: 100%; height: 100%; }
 
         #tappa-details {
-            height: 40%;
+            height: 45%;
             background: var(--white);
-            padding: 30px;
+            padding: 30px 40px;
             overflow-y: auto;
             border-top: 4px solid var(--accent);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
         }
 
-        /* SEZIONI ESPERIENZA */
+        /* =========================================
+           5. DETTAGLI TAPPA E SEZIONI COMPLESSE
+           ========================================= */
         .esperienza-section {
             margin: 25px 0;
             padding: 20px;
             background: #fdfaf4;
-            border-radius: 10px;
+            border-radius: 8px;
             border-left: 4px solid var(--accent);
+        }
+        
+        .esperienza-section h3 {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .music-player {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             padding: 20px;
-            border-radius: 10px;
-            color: white;
+            border-radius: 8px;
+            color: var(--white);
             margin: 20px 0;
+            border: 1px solid var(--accent);
         }
 
         .citazione-box {
@@ -192,23 +206,28 @@
             font-style: italic;
             border-radius: 8px;
             margin: 20px 0;
+            font-size: 1.1em;
+            color: #555;
         }
 
         .atmosfera-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 15px;
-            margin-top: 15px;
         }
 
         .atmosfera-item {
-            background: white;
+            background: var(--white);
             padding: 15px;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
         }
 
+        /* =========================================
+           6. TIMELINE E NAVIGAZIONE
+           ========================================= */
         .view { display: none; }
         .view.active { display: block; }
         
@@ -218,14 +237,13 @@
             border-radius: 8px;
             cursor: pointer;
             border-left: 4px solid transparent;
-            transition: 0.3s;
+            transition: all 0.3s;
+            background: rgba(0,0,0,0.2);
         }
 
-        .timeline-item.current {
-            border-left-color: var(--accent);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
+        .timeline-item:hover { background: rgba(255,255,255,0.1); }
+        .timeline-item.current { border-left-color: var(--accent); background: rgba(166, 138, 86, 0.2); }
+        
         .nav-btn {
             padding: 12px 25px;
             border: none;
@@ -233,11 +251,18 @@
             cursor: pointer;
             font-weight: bold;
             font-family: 'Georgia', serif;
+            font-size: 1em;
+            transition: 0.3s;
         }
 
-        .btn-next { background: var(--primary); color: white; }
-        .btn-prev { background: #95a5a6; color: white; margin-right: 10px; }
-        button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn-next { background: var(--primary); color: var(--white); margin-left: auto; }
+        .btn-next:hover { background: var(--dark); }
+        .btn-prev { background: #95a5a6; color: var(--white); margin-right: 15px; }
+        .btn-prev:hover { background: #7f8c8d; }
+        button:disabled { opacity: 0.4; cursor: not-allowed; }
+        
+        /* Icone mappa senza sfondo bianco */
+        .custom-marker { background: transparent; border: none; }
     </style>
 </head>
 <body>
@@ -246,23 +271,26 @@
         <h1>🏛️ Passeggiate Romane</h1>
         <div id="nav-buttons">
             <button onclick="showView('home')">Home</button>
-            <button id="back-to-itinerary-btn" onclick="showView('itinerary')" style="display:none;">Itinerario</button>
+            <button id="back-to-itinerary-btn" onclick="showView('itinerary')" style="display:none;">Torna all'Itinerario</button>
         </div>
     </div>
 
     <div id="home-view" class="view active">
         <h2>Itinerari Tematici</h2>
         <p class="subtitle">Scopri Roma attraverso i segreti della Regina Cristina di Svezia</p>
-        <div id="itinerari-container" class="itinerari-grid"></div>
+        <div id="itinerari-container" class="itinerari-grid">
+            </div>
     </div>
 
     <div id="itinerary-view" class="view">
+        
         <div id="timeline-sidebar">
-            <div id="timeline-title">Timeline Percorso</div>
-            <div id="progress-bar" style="background:rgba(255,255,255,0.1); height:8px; border-radius:4px; margin-bottom:20px; overflow:hidden;">
+            <div style="font-weight:bold; color:var(--accent); font-size:1.2em; margin-bottom:15px; letter-spacing:1px; text-transform:uppercase;">Timeline Percorso</div>
+            <div id="progress-bar" style="background:rgba(255,255,255,0.2); height:6px; border-radius:3px; margin-bottom:20px; overflow:hidden;">
                 <div id="progress-fill" style="background:var(--accent); height:100%; width:0%; transition:0.5s;"></div>
             </div>
-            <div id="timeline-items"></div>
+            <div id="timeline-items">
+                </div>
         </div>
         
         <div id="itinerary-content">
@@ -271,23 +299,22 @@
             </div>
             
             <div id="tappa-details">
-                <div id="tappa-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
                     <div>
-                        <h2 id="tappa-nome" style="color:var(--primary); margin:0;"></h2>
-                        <p id="tappa-desc-breve" style="color:#7f8c8d; margin:5px 0 0 0; font-style:italic;"></p>
+                        <h2 id="tappa-nome" style="color:var(--primary); margin:0; font-size:2em;"></h2>
+                        <p id="tappa-desc-breve" style="color:#7f8c8d; margin:5px 0 0 0; font-style:italic; font-size:1.1em;"></p>
                     </div>
-                    <div id="tappa-orario" style="text-align:right; color:var(--primary); font-weight:bold;">
-                        <div class="time" style="font-size:1.5em;"></div>
-                        <div class="moment" style="font-size:0.9em; color:#999;"></div>
+                    <div style="text-align:right;">
+                        <div id="tappa-orario-time" style="color:var(--primary); font-weight:bold; font-size:1.8em;"></div>
+                        <div id="tappa-orario-moment" style="color:#999; font-size:1em; text-transform:capitalize;"></div>
                     </div>
                 </div>
 
-                <div id="tappa-content">
-                    </div>
+                <div id="tappa-content"></div>
 
-                <div style="display:flex; margin-top:30px;">
-                    <button class="nav-btn btn-prev" onclick="previousTappa()">← Precedente</button>
-                    <button class="nav-btn btn-next" onclick="nextTappa()">Successiva →</button>
+                <div style="display:flex; margin-top:30px; padding-top:20px; border-top:1px solid #eee;">
+                    <button class="nav-btn btn-prev" onclick="previousTappa()">← Tappa Precedente</button>
+                    <button class="nav-btn btn-next" onclick="nextTappa()">Tappa Successiva →</button>
                 </div>
             </div>
         </div>
@@ -295,6 +322,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // Variabili Globali
         let itinerariData = null;
         let currentItinerario = null;
         let currentTappaIndex = 0;
@@ -302,205 +330,349 @@
         let markers = [];
         let routeLine = null;
 
-        const momentIcons = { 'alba': '🌅', 'mattino': '☀️', 'mezzogiorno': '🌞', 'pomeriggio': '🌤️', 'tramonto': '🌆', 'sera': '🌃' };
+        // Dizionario Emoji per i momenti della giornata
+        const momentIcons = { 
+            'alba': '🌅', 
+            'mattino': '☀️', 
+            'mezzogiorno': '🌞', 
+            'pomeriggio': '🌤️', 
+            'tramonto': '🌆', 
+            'sera': '🌃' 
+        };
 
+        // 1. Inizializzazione
         async function init() {
             await loadData();
             renderHome();
         }
 
+        // 2. Caricamento Dati (Tenta dal JSON, se fallisce usa i dati interni)
         async function loadData() {
             try {
                 const res = await fetch('data.json');
-                if(!res.ok) throw new Error("Errore network");
+                if(!res.ok) throw new Error("JSON non caricato");
                 const data = await res.json();
                 itinerariData = data.itinerari;
-            } catch (e) {
-                console.warn("Uso dati di fallback:", e);
+            } catch (error) {
+                console.log("Uso i dati di emergenza incorporati nel file.");
                 itinerariData = getEmbeddedData();
             }
         }
 
+        // 3. Stampa le Card nella Home
         function renderHome() {
             const container = document.getElementById('itinerari-container');
             if(!itinerariData) return;
             
-            container.innerHTML = itinerariData.map(it => `
-                <div class="itinerario-card" onclick="startItinerario('${it.id}')">
+            container.innerHTML = '';
+            itinerariData.forEach(it => {
+                const card = document.createElement('div');
+                card.className = 'itinerario-card';
+                card.onclick = () => startItinerario(it.id);
+                card.innerHTML = `
                     <div class="card-image" style="background-image: url('${it.immagine_copertina || ''}')">
-                        <div class="card-badge">${it.categoria || 'Cultura'}</div>
+                        <div class="card-badge">${it.categoria || 'Percorso Culturale'}</div>
                     </div>
                     <div class="card-content">
-                        <h3>${it.nome || 'Itinerario'}</h3>
-                        <p class="card-subtitle">${it.sottotitolo || ''}</p>
-                        <p>${(it.descrizione || '').substring(0, 120)}...</p>
+                        <h3>${it.nome}</h3>
+                        <p style="color:#7f8c8d; font-style:italic; margin-bottom:15px;">${it.sottotitolo || ''}</p>
+                        <p>${(it.descrizione || '').substring(0, 130)}...</p>
                         <div class="card-stats">
                             <div class="stat"><span class="stat-value">⏱️ ${it.durata_totale_ore || 0}h</span><span class="stat-label">Durata</span></div>
                             <div class="stat"><span class="stat-value">📍 ${(it.tappe || []).length}</span><span class="stat-label">Tappe</span></div>
                             <div class="stat"><span class="stat-value">🚶 ${it.distanza_totale_km || 0}km</span><span class="stat-label">Distanza</span></div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+                container.appendChild(card);
+            });
         }
 
+        // 4. Avvia l'itinerario selezionato
         function startItinerario(id) {
             currentItinerario = itinerariData.find(it => it.id === id);
             if(!currentItinerario) return;
             
             showView('itinerary');
+            // Ritardo necessario affinché il contenitore sia visibile prima di disegnare la mappa
             setTimeout(() => {
                 initMap();
                 loadTappa(0);
             }, 300);
         }
 
+        // 5. Inizializza la Mappa Leaflet
         function initMap() {
-            try {
-                if (map) map.remove();
-                map = L.map('map').setView([41.90, 12.47], 14);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-                
-                if(!currentItinerario || !currentItinerario.tappe) return;
+            if (map) map.remove();
+            map = L.map('map').setView([41.90, 12.47], 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+            
+            const coords = [];
+            markers = [];
 
-                // Salva vita: disegna la mappa SOLO per le tappe che hanno coordinate valide
-                const coords = currentItinerario.tappe
-                    .filter(t => t.coordinate && Array.isArray(t.coordinate) && t.coordinate.length === 2)
-                    .map(t => t.coordinate);
-                
-                if(coords.length > 0) {
-                    routeLine = L.polyline(coords, {color: '#5d1010', weight: 4, dashArray: '5, 10'}).addTo(map);
-                    map.fitBounds(routeLine.getBounds(), {padding: [50, 50]});
+            // Disegna i Marker con le Emoji
+            currentItinerario.tappe.forEach((t, i) => {
+                if (t.coordinate && t.coordinate.length === 2) {
+                    coords.push(t.coordinate);
+                    const iconEmoji = momentIcons[t.momento_giornata] || '📍';
+                    
+                    const customIcon = L.divIcon({
+                        html: `<div style="font-size: 2.5em; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">${iconEmoji}</div>`,
+                        className: 'custom-marker',
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 20]
+                    });
+
+                    const marker = L.marker(t.coordinate, {icon: customIcon}).addTo(map);
+                    marker.bindPopup(`<b>Tappa ${t.numero}</b><br>${t.nome}`);
+                    marker.on('click', () => loadTappa(i));
+                    markers.push(marker);
+                } else {
+                    markers.push(null);
                 }
-                
-                markers = currentItinerario.tappe.map((t, i) => {
-                    if(t.coordinate && Array.isArray(t.coordinate) && t.coordinate.length === 2) {
-                        const marker = L.marker(t.coordinate).addTo(map).bindPopup(t.nome || 'Tappa');
-                        marker.on('click', () => loadTappa(i));
-                        return marker;
-                    }
-                    return null;
-                });
-            } catch(e) {
-                console.error("Mappa non caricata:", e);
+            });
+
+            // Disegna la linea del percorso
+            if (coords.length > 0) {
+                routeLine = L.polyline(coords, {color: '#5d1010', weight: 5, opacity: 0.8, dashArray: '8, 8'}).addTo(map);
+                map.fitBounds(routeLine.getBounds(), {padding: [50, 50]});
             }
         }
 
+        // 6. Carica i dati della singola Tappa
         function loadTappa(index) {
-            try {
-                if(!currentItinerario || !currentItinerario.tappe || !currentItinerario.tappe[index]) return;
-                
-                currentTappaIndex = index;
-                const tappa = currentItinerario.tappe[index];
-                
-                document.getElementById('tappa-nome').textContent = tappa.nome || 'Tappa';
-                document.getElementById('tappa-desc-breve').textContent = tappa.descrizione_breve || '';
-                
-                const timeEl = document.querySelector('#tappa-orario .time');
-                const momentEl = document.querySelector('#tappa-orario .moment');
-                if(timeEl) timeEl.textContent = tappa.orario_consigliato || '';
-                if(momentEl) momentEl.textContent = tappa.momento_giornata || '';
+            if(!currentItinerario || !currentItinerario.tappe[index]) return;
+            
+            currentTappaIndex = index;
+            const tappa = currentItinerario.tappe[index];
+            
+            // Popola i testi di base nell'intestazione
+            document.getElementById('tappa-nome').textContent = `${tappa.numero}. ${tappa.nome}`;
+            document.getElementById('tappa-desc-breve').textContent = tappa.descrizione_breve || '';
+            
+            const iconEmoji = momentIcons[tappa.momento_giornata] || '';
+            document.getElementById('tappa-orario-time').textContent = tappa.orario_consigliato || '';
+            document.getElementById('tappa-orario-moment').textContent = `${iconEmoji} ${tappa.momento_giornata || ''}`;
 
-                renderTappaContent(tappa);
-                updateTimeline();
-                
-                if(tappa.coordinate && Array.isArray(tappa.coordinate) && tappa.coordinate.length === 2) {
-                    map.setView(tappa.coordinate, 16);
-                    if(markers[index]) markers[index].openPopup();
-                }
-                
-                document.querySelector('.btn-prev').disabled = index === 0;
-                document.querySelector('.btn-next').disabled = index === currentItinerario.tappe.length - 1;
-            } catch(e) {
-                console.error("Errore caricamento tappa:", e);
+            // Costruisci il contenuto complesso (Storia, Musica, ecc.)
+            renderTappaContent(tappa);
+            
+            // Aggiorna Timeline a sinistra
+            updateTimeline();
+            
+            // Muovi la mappa
+            if (tappa.coordinate && tappa.coordinate.length === 2) {
+                map.setView(tappa.coordinate, 16, {animate: true, duration: 0.5});
+                if (markers[index]) markers[index].openPopup();
             }
+            
+            // Aggiorna bottoni
+            document.querySelector('.btn-prev').disabled = index === 0;
+            document.querySelector('.btn-next').disabled = index === currentItinerario.tappe.length - 1;
         }
 
+        // 7. Renderizza le sezioni complesse (Il Cuore dell'Esame)
         function renderTappaContent(tappa) {
             const container = document.getElementById('tappa-content');
-            if(!container) return;
             container.innerHTML = '';
 
+            // Sezione Base: Descrizione, Storia e Curiosità
             if (tappa.descrizione) {
-                const p = document.createElement('p');
-                p.textContent = tappa.descrizione;
-                container.appendChild(p);
+                container.innerHTML += `<p style="font-size: 1.1em; margin-bottom: 25px;">${tappa.descrizione}</p>`;
+            }
+            
+            if (tappa.storia || tappa.curiosita) {
+                let html = `<div class="esperienza-section"><h3>📜 Storia e Curiosità</h3>`;
+                if (tappa.storia) html += `<p><strong>Storia:</strong> ${tappa.storia}</p>`;
+                if (tappa.curiosita) html += `<p><strong>Curiosità:</strong> ${tappa.curiosita}</p>`;
+                html += `</div>`;
+                container.innerHTML += html;
             }
 
+            // Sezione Esperienza Culturale (Musica, Letteratura, Atmosfera, Arte)
             if (tappa.esperienza_culturale) {
                 const exp = tappa.esperienza_culturale;
                 
+                // Musica
                 if (exp.musica) {
-                    const music = document.createElement('div');
-                    music.className = 'music-player';
-                    music.innerHTML = `<h4>🎵 ${exp.musica.movimento || 'Ascolto'}</h4><p>${exp.musica.descrizione_musicale || ''}</p>`;
-                    container.appendChild(music);
+                    container.innerHTML += `
+                        <div class="music-player">
+                            <h4 style="margin-top:0;">🎵 ${exp.musica.movimento || 'Ascolto Consigliato'}</h4>
+                            <p style="margin-bottom:0; font-size:0.95em; opacity:0.9;">${exp.musica.descrizione_musicale || ''}</p>
+                        </div>
+                    `;
                 }
 
+                // Letteratura
                 if (exp.letteratura) {
-                    const lit = document.createElement('div');
-                    lit.className = 'citazione-box';
-                    lit.innerHTML = `<p>"${exp.letteratura.citazione || ''}"</p><small>— ${exp.letteratura.autore || ''}, ${exp.letteratura.opera || ''}</small>`;
-                    container.appendChild(lit);
+                    container.innerHTML += `
+                        <div class="citazione-box">
+                            <p>"${exp.letteratura.citazione}"</p>
+                            <div style="text-align:right; font-size:0.9em; color:#7f8c8d;">
+                                — ${exp.letteratura.autore}, <em>${exp.letteratura.opera}</em>
+                            </div>
+                        </div>
+                    `;
                 }
 
+                // Atmosfera
                 if (exp.atmosfera) {
-                    const atm = document.createElement('div');
-                    atm.className = 'esperienza-section';
-                    atm.innerHTML = `<h3>🌤️ Atmosfera</h3><div class="atmosfera-grid">
-                        <div class="atmosfera-item"><b>Luce</b><br>${exp.atmosfera.luce || '---'}</div>
-                        <div class="atmosfera-item"><b>Emozione</b><br>${exp.atmosfera.emozione_target || '---'}</div>
-                        <div class="atmosfera-item"><b>Affollamento</b><br>${exp.atmosfera.affollamento || '---'}</div>
-                    </div>`;
-                    container.appendChild(atm);
+                    container.innerHTML += `
+                        <div class="esperienza-section">
+                            <h3>🌤️ Atmosfera del Luogo</h3>
+                            <div class="atmosfera-grid">
+                                <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">💡</div><b>Luce</b><br>${exp.atmosfera.luce || 'N/A'}</div>
+                                <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">😌</div><b>Emozione</b><br>${exp.atmosfera.emozione_target || 'N/A'}</div>
+                                <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">👥</div><b>Affollamento</b><br>${exp.atmosfera.affollamento || 'N/A'}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Arte Visiva
+                if (exp.arte_visiva) {
+                    container.innerHTML += `
+                        <div class="esperienza-section">
+                            <h3>🎨 Dettagli Artistici</h3>
+                            <p><strong>Stile:</strong> ${exp.arte_visiva.stile_architettonico || 'Non specificato'}</p>
+                            <p><strong>Architetto/Scultore:</strong> ${exp.arte_visiva.architetto || exp.arte_visiva.scultore || 'Ignoto'}</p>
+                            <p>${exp.arte_visiva.descrizione || ''}</p>
+                        </div>
+                    `;
                 }
             }
         }
 
+        // 8. Aggiorna la Timeline laterale
         function updateTimeline() {
             const tl = document.getElementById('timeline-items');
-            if(!tl || !currentItinerario || !currentItinerario.tappe) return;
-            
-            tl.innerHTML = currentItinerario.tappe.map((t, i) => `
+            tl.innerHTML = currentItinerario.tappe.map((t, i) => {
+                const iconEmoji = momentIcons[t.momento_giornata] || '';
+                return `
                 <div class="timeline-item ${i === currentTappaIndex ? 'current' : ''}" onclick="loadTappa(${i})">
-                    <span style="color:var(--accent); font-weight:bold;">${t.orario_consigliato || ''}</span><br>${t.nome || 'Tappa'}
+                    <span style="color:var(--accent); font-weight:bold; font-size:1.1em;">
+                        ${iconEmoji} ${t.orario_consigliato || ''}
+                    </span><br>
+                    <span style="font-size:1.05em; display:inline-block; margin-top:5px;">${t.nome}</span>
                 </div>
-            `).join('');
+                `;
+            }).join('');
             
             const progress = ((currentTappaIndex + 1) / currentItinerario.tappe.length) * 100;
-            const pFill = document.getElementById('progress-fill');
-            if(pFill) pFill.style.width = progress + '%';
+            document.getElementById('progress-fill').style.width = progress + '%';
         }
 
+        // 9. Utility per scambiare le visualizzazioni
         function showView(name) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById(name + '-view').classList.add('active');
-            const btn = document.getElementById('back-to-itinerary-btn');
-            if(btn) btn.style.display = name === 'itinerary' ? 'inline-block' : 'none';
+            document.getElementById('back-to-itinerary-btn').style.display = name === 'itinerary' ? 'inline-block' : 'none';
         }
 
         function nextTappa() { if (currentTappaIndex < currentItinerario.tappe.length - 1) loadTappa(currentTappaIndex + 1); }
         function previousTappa() { if (currentTappaIndex > 0) loadTappa(currentTappaIndex - 1); }
 
+        // =========================================
+        // 10. DATI INCORPORATI (IL TUO SALVAVITA)
+        // Se data.json si rompe, il sito pesca da qui!
+        // =========================================
         function getEmbeddedData() {
             return [{
                 "id": "cristina_svezia_roma",
                 "nome": "La Roma di Cristina di Svezia",
-                "sottotitolo": "Un'anima barocca tra arte e libertà",
+                "sottotitolo": "Un viaggio barocco tra arte e libertà",
                 "categoria": "Percorso Storico",
                 "immagine_copertina": "https://images.unsplash.com/photo-1543428174-839006e8638b?q=80&w=1000",
-                "descrizione": "Ripercorri i passi della Regina ribelle attraverso i suoi luoghi preferiti a Roma, dall'ingresso trionfale di Porta del Popolo fino al suo rifugio segreto in Trastevere.",
-                "durata_totale_ore": 6, "distanza_totale_km": 4.2,
+                "personaggio": { "nome": "Cristina di Svezia", "anni": "1626-1689" },
+                "descrizione": "Sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo, trasferendosi a Roma nel 1655. Divenne una delle più grandi mecenati e animatrici culturali del periodo barocco.",
+                "durata_totale_ore": 6,
+                "distanza_totale_km": 4.2,
                 "tappe": [
-                    { "numero": 1, "nome": "Porta del Popolo", "coordinate": [41.9115, 12.4765], "orario_consigliato": "09:00", "momento_giornata": "alba", "descrizione_breve": "L'ingresso trionfale.", "descrizione": "Il luogo dove Cristina entrò a Roma accolta dai monumenti di Bernini." },
-                    { "numero": 2, "nome": "Pantheon", "coordinate": [41.8986, 12.4769], "orario_consigliato": "12:00", "momento_giornata": "mezzogiorno", "descrizione": "Il tempio dell'antico che Cristina amava studiare per la sua perfezione architettonica." },
-                    { "numero": 3, "nome": "Galleria Corsini", "coordinate": [41.8931, 12.4674], "orario_consigliato": "16:00", "momento_giornata": "pomeriggio", "descrizione": "La dimora dove la Regina fondò la sua accademia e dove morì circondata d'arte." },
-                    { "numero": 4, "nome": "Orto Botanico", "coordinate": [41.8906, 12.4635], "orario_consigliato": "19:00", "momento_giornata": "tramonto", "descrizione": "Il giardino segreto dove Cristina coltivava la passione per la botanica e l'alchimia." }
+                    {
+                        "numero": 1,
+                        "nome": "Porta del Popolo",
+                        "coordinate": [41.9115, 12.4765],
+                        "orario_consigliato": "09:00",
+                        "momento_giornata": "alba",
+                        "descrizione_breve": "L'ingresso trionfale a Roma.",
+                        "descrizione": "Papa Alessandro VII commissionò a Gian Lorenzo Bernini il restauro della facciata interna per accogliere la Regina. Questo varco simboleggia l'inizio della sua nuova vita.",
+                        "storia": "Cristina entrò a Roma il 23 dicembre 1655, a cavallo e vestita come un'amazzone, stupendo l'intera città.",
+                        "esperienza_culturale": {
+                            "letteratura": {
+                                "citazione": "Felici faustoque ingressui anno Domini MDCLV",
+                                "autore": "Iscrizione del Bernini",
+                                "opera": "Porta del Popolo"
+                            },
+                            "arte_visiva": {
+                                "stile_architettonico": "Barocco",
+                                "architetto": "Gian Lorenzo Bernini",
+                                "descrizione": "L'arco trionfale è coronato dallo stemma papale dei Chigi fuso con quello dei Vasa (i covoni di grano), famiglia della Regina."
+                            },
+                            "atmosfera": {
+                                "luce": "Luce radente dell'alba che illumina la via Flaminia.",
+                                "emozione_target": "Trionfo e Rinascita",
+                                "affollamento": "Basso, ideale per ammirare le sculture."
+                            }
+                        }
+                    },
+                    {
+                        "numero": 2,
+                        "nome": "Pantheon",
+                        "coordinate": [41.8986, 12.4769],
+                        "orario_consigliato": "12:00",
+                        "momento_giornata": "mezzogiorno",
+                        "descrizione_breve": "L'ammirazione per l'antico.",
+                        "descrizione": "La regina era un'avida collezionista di sculture antiche. Il Pantheon rappresentava per lei il legame indissolubile tra la grandezza del passato e l'ambizione del presente.",
+                        "esperienza_culturale": {
+                            "atmosfera": {
+                                "luce": "Luce zenitale potente che penetra dall'Oculo.",
+                                "emozione_target": "Stupore ed Eternità",
+                                "affollamento": "Alto, cuore turistico della città."
+                            }
+                        }
+                    },
+                    {
+                        "numero": 3,
+                        "nome": "Galleria Corsini",
+                        "coordinate": [41.8931, 12.4674],
+                        "orario_consigliato": "16:00",
+                        "momento_giornata": "pomeriggio",
+                        "descrizione_breve": "Il centro della sua Accademia.",
+                        "descrizione": "Qui Cristina trasformò i saloni in un centro culturale d'eccellenza, l'Accademia Reale. Morì proprio in queste stanze nel 1689.",
+                        "curiosita": "L'Accademia Reale di Cristina gettò le basi per quella che diventerà poi la famosa Accademia dell'Arcadia.",
+                        "esperienza_culturale": {
+                            "musica": {
+                                "movimento": "Sonata da Chiesa",
+                                "descrizione_musicale": "Cristina fu un'importantissima mecenate musicale. Tra le sue stanze risuonavano spesso le musiche di Arcangelo Corelli e Alessandro Scarlatti, che lavorarono per lei."
+                            },
+                            "arte_visiva": {
+                                "stile_architettonico": "Tardo Barocco",
+                                "descrizione": "Le stanze ospitavano una delle più grandi collezioni d'arte dell'epoca, inclusi quadri di Tiziano e Raffaello che la Regina si era portata dalla Svezia."
+                            }
+                        }
+                    },
+                    {
+                        "numero": 4,
+                        "nome": "Orto Botanico",
+                        "coordinate": [41.8906, 12.4635],
+                        "orario_consigliato": "19:00",
+                        "momento_giornata": "tramonto",
+                        "descrizione_breve": "Tra scienza e alchimia.",
+                        "descrizione": "Situato nel parco retrostante Palazzo Corsini, la Regina amava ritirarsi in questi giardini per approfondire i suoi studi esoterici, l'astronomia e l'alchimia.",
+                        "esperienza_culturale": {
+                            "atmosfera": {
+                                "luce": "I colori caldi e crepuscolari del tramonto romano.",
+                                "emozione_target": "Mistero e Contemplazione",
+                                "affollamento": "Molto basso, pace assoluta."
+                            }
+                        }
+                    }
                 ]
             }];
         }
 
-        window.onload = init;
+        // Avvio automatico al caricamento
+        window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
