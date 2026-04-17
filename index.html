@@ -109,11 +109,13 @@
         .itinerario-card:hover { transform: translateY(-10px); }
 
         .card-image {
-            height: 250px;
-            background-size: cover;
-            background-position: top center;
-            position: relative;
-        }
+    height: 250px;
+    background-size: contain; /* <--- Fa entrare tutta la foto */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #1a0303; /* Uno sfondino scuro elegante */
+    position: relative;
+}
 
         .card-badge {
             position: absolute;
