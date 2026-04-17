@@ -4,627 +4,465 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passeggiate Romane - Itinerari Tematici</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-    /* === VARIABILI E BASE === */
-    :root {
-        --primary: #5d1010;   /* Bordeaux */
-        --accent: #a68a56;    /* Oro */
-        --bg: #fdfcf0;        /* Crema antico */
-        --dark: #2a0505;
-        --white: #ffffff;
-        --shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-
-    body {
-        font-family: 'Georgia', serif;
-        background-color: var(--bg);
-        margin: 0;
-        color: #333;
-    }
-
-    /* === NAVBAR MODERNA === */
-    #navbar {
-        background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
-        color: var(--accent);
-        padding: 0 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 70px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        border-bottom: 3px solid var(--accent);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    #navbar h1 { font-size: 1.6em; margin: 0; letter-spacing: 1px; }
-
-    #nav-buttons button {
-        background: transparent;
-        color: var(--accent);
-        border: 1px solid var(--accent);
-        padding: 8px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-family: 'Georgia', serif;
-    }
-
-    #nav-buttons button:hover {
-        background: var(--accent);
-        color: var(--white);
-    }
-
-    /* === HOME PAGE (IL TUO PROBLEMA!) === */
-    #home-view {
-        padding: 60px 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-        min-height: calc(100vh - 70px);
-    }
-
-    #home-view h2 {
-        text-align: center;
-        font-size: 2.8em;
-        color: var(--primary);
-        margin-bottom: 10px;
-    }
-
-    .subtitle {
-        text-align: center;
-        color: #7f8c8d;
-        margin-bottom: 50px;
-        font-style: italic;
-    }
-
-    /* CARD MODERNE */
-    .itinerari-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-        gap: 40px;
-    }
-
-    .itinerario-card {
-        background: var(--white);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: transform 0.3s;
-        border: 1px solid rgba(166, 138, 86, 0.2);
-    }
-
-    .itinerario-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .card-image {
-        height: 250px;
-        background-size: cover;
-        background-position: center;
-        background-color: #ddd; /* Colore se non carica la foto */
-    }
-
-    .card-content { padding: 30px; }
-    .card-content h3 { color: var(--primary); font-size: 1.8em; margin: 0 0 10px 0; }
     
-    .card-stats {
-        display: flex;
-        justify-content: space-around;
-        padding: 20px 0;
-        border-top: 1px solid #eee;
-        margin-top: 20px;
-    }
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        /* === VARIABILI E TEMA REGALE === */
+        :root {
+            --primary: #5d1010;   /* Bordeaux */
+            --accent: #a68a56;    /* Oro */
+            --bg: #fdfcf0;        /* Crema antico */
+            --dark: #2a0505;      /* Nero velluto */
+            --white: #ffffff;
+            --shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
 
-    .stat-value { color: var(--primary); font-weight: bold; font-size: 1.2em; display: block; }
-    .stat-label { font-size: 0.8em; color: #999; text-transform: uppercase; }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg);
+            margin: 0;
+            color: #333;
+        }
 
-    .card-button {
-        width: 100%;
-        padding: 15px;
-        background: var(--primary);
-        color: var(--white);
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        font-size: 1em;
-        transition: background 0.3s;
-    }
+        /* === NAVBAR === */
+        #navbar {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: var(--accent);
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 3px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .card-button:hover { background: var(--dark); }
+        #navbar h1 { font-size: 1.6em; margin: 0; letter-spacing: 1px; }
 
-    /* === ITINERARY VIEW (MAPPA) === */
-    #itinerary-view { display: flex; height: calc(100vh - 70px); }
-    #timeline-sidebar { width: 320px; background: var(--dark); color: white; padding: 25px; overflow-y: auto; border-right: 3px solid var(--accent); }
-    #itinerary-content { flex: 1; display: flex; flex-direction: column; }
-    #map-container { flex: 1; position: relative; }
-    #map { width: 100%; height: 100%; }
-    #tappa-details { height: 38%; background: var(--white); padding: 30px; overflow-y: auto; border-top: 4px solid var(--accent); }
+        #nav-buttons button {
+            background: rgba(166, 138, 86, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Georgia', serif;
+        }
 
-    .view { display: none; }
-    .view.active { display: block; }
-</style>
+        #nav-buttons button:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* === HOME VIEW === */
+        #home-view {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 70px);
+        }
+
+        #home-view h2 {
+            text-align: center;
+            font-size: 3em;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        .itinerari-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .itinerario-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(166, 138, 86, 0.2);
+        }
+
+        .itinerario-card:hover { transform: translateY(-10px); }
+
+        .card-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border: 1px solid var(--accent);
+        }
+
+        .card-content { padding: 30px; }
+        .card-content h3 { color: var(--primary); font-size: 1.8em; margin: 0 0 10px 0; }
+        
+        .card-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+
+        .stat-value { color: var(--primary); font-weight: bold; font-size: 1.2em; display: block; }
+        .stat-label { font-size: 0.8em; color: #999; text-transform: uppercase; }
+
+        .card-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        /* === ITINERARY VIEW === */
+        #itinerary-view { display: flex; height: calc(100vh - 70px); }
+
+        #timeline-sidebar {
+            width: 320px;
+            background: linear-gradient(180deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 25px;
+            overflow-y: auto;
+            border-right: 3px solid var(--accent);
+        }
+
+        #itinerary-content { flex: 1; display: flex; flex-direction: column; }
+        #map-container { flex: 1; position: relative; }
+        #map { width: 100%; height: 100%; }
+
+        #tappa-details {
+            height: 40%;
+            background: var(--white);
+            padding: 30px;
+            overflow-y: auto;
+            border-top: 4px solid var(--accent);
+        }
+
+        /* SEZIONI ESPERIENZA */
+        .esperienza-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #fdfaf4;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .music-player {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            margin: 20px 0;
+        }
+
+        .citazione-box {
+            background: #fffdf5;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            font-style: italic;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .atmosfera-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .atmosfera-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .view { display: none; }
+        .view.active { display: block; }
+        
+        .timeline-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            transition: 0.3s;
+        }
+
+        .timeline-item.current {
+            border-left-color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn-next { background: var(--primary); color: white; }
+        .btn-prev { background: #95a5a6; color: white; margin-right: 10px; }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+
     <div id="navbar">
         <h1>🏛️ Passeggiate Romane</h1>
         <div id="nav-buttons">
             <button onclick="showView('home')">Home</button>
-            <button id="back-to-itinerary-btn" onclick="showView('itinerary')" style="display:none;">Torna all'Itinerario</button>
+            <button id="back-to-itinerary-btn" onclick="showView('itinerary')" style="display:none;">Itinerario</button>
         </div>
     </div>
-    
-    <!-- HOME VIEW: Selezione Itinerario -->
+
     <div id="home-view" class="view active">
         <h2>Itinerari Tematici</h2>
-        <p class="subtitle">Scopri Roma attraverso passeggiate culturali guidate da personaggi storici</p>
-        
-        <div id="itinerari-container" class="itinerari-grid">
-            <!-- Le card degli itinerari saranno generate dinamicamente -->
-        </div>
+        <p class="subtitle">Scopri Roma attraverso i segreti della Regina Cristina di Svezia</p>
+        <div id="itinerari-container" class="itinerari-grid"></div>
     </div>
-    
-    <!-- ITINERARY VIEW: Visualizzazione Percorso -->
+
     <div id="itinerary-view" class="view">
-        <!-- Timeline Sidebar -->
         <div id="timeline-sidebar">
-            <div id="timeline-title">Timeline Itinerario</div>
-            <div id="progress-bar">
-                <div id="progress-fill"></div>
+            <div id="timeline-title">Timeline Percorso</div>
+            <div id="progress-bar" style="background:rgba(255,255,255,0.1); height:8px; border-radius:4px; margin-bottom:20px; overflow:hidden;">
+                <div id="progress-fill" style="background:var(--accent); height:100%; width:0%; transition:0.5s;"></div>
             </div>
-            <div id="timeline-items">
-                <!-- Timeline items generati dinamicamente -->
-            </div>
+            <div id="timeline-items"></div>
         </div>
         
-        <!-- Main Content -->
         <div id="itinerary-content">
-            <!-- Mappa -->
             <div id="map-container">
                 <div id="map"></div>
             </div>
             
-            <!-- Dettagli Tappa -->
             <div id="tappa-details">
-                <div id="tappa-header">
-                    <div id="tappa-numero"></div>
-                    <div id="tappa-nome">
-                        <h2></h2>
-                        <p class="descrizione-breve"></p>
+                <div id="tappa-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
+                    <div>
+                        <h2 id="tappa-nome" style="color:var(--primary); margin:0;"></h2>
+                        <p id="tappa-desc-breve" style="color:#7f8c8d; margin:5px 0 0 0; font-style:italic;"></p>
                     </div>
-                    <div id="tappa-orario">
-                        <div class="time"></div>
-                        <div class="moment"></div>
+                    <div id="tappa-orario" style="text-align:right; color:var(--primary); font-weight:bold;">
+                        <div class="time" style="font-size:1.5em;"></div>
+                        <div class="moment" style="font-size:0.9em; color:#999;"></div>
                     </div>
                 </div>
-                
+
                 <div id="tappa-content">
-                    <!-- Contenuto dinamico -->
-                </div>
-                
-                <div id="tappa-navigation">
-                    <button class="nav-btn prev" onclick="previousTappa()">← Tappa Precedente</button>
-                    <button class="nav-btn next" onclick="nextTappa()">Tappa Successiva →</button>
+                    </div>
+
+                <div style="display:flex; margin-top:30px;">
+                    <button class="nav-btn btn-prev" onclick="previousTappa()">← Precedente</button>
+                    <button class="nav-btn btn-next" onclick="nextTappa()">Successiva →</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // ========================================
-        // VARIABILI GLOBALI
-        // ========================================
         let itinerariData = null;
         let currentItinerario = null;
         let currentTappaIndex = 0;
         let map = null;
         let markers = [];
         let routeLine = null;
-        
-        // Icone momenti della giornata
-        const momentIcons = {
-            'alba': '🌅',
-            'mattino': '☀️',
-            'mezzogiorno': '🌞',
-            'pomeriggio': '🌤️',
-            'tramonto': '🌆',
-            'sera': '🌃'
-        };
-        
-        // ========================================
-        // INIZIALIZZAZIONE
-        // ========================================
+
+        const momentIcons = { 'alba': '🌅', 'mattino': '☀️', 'mezzogiorno': '🌞', 'pomeriggio': '🌤️', 'tramonto': '🌆', 'sera': '🌃' };
+
         async function init() {
-            console.log('🚀 Inizializzazione Passeggiate Romane...');
-            await loadItinerariData();
-            renderItinerariCards();
+            await loadData();
+            renderHome();
         }
-        
-        // ========================================
-        // CARICAMENTO DATI
-        // ========================================
-        async function loadItinerariData() {
+
+        async function loadData() {
             try {
-                const response = await fetch('data.json');
-                if (!response.ok) throw new Error('File non trovato');
-                
-                const data = await response.json();
+                const res = await fetch('data.json');
+                const data = await res.json();
                 itinerariData = data.itinerari;
-                console.log(`✅ Caricati ${itinerariData.length} itinerari`);
-            } catch (error) {
-                console.error('❌ Errore caricamento:', error);
-                // Fallback: usa dati embedded
-                itinerariData = getEmbeddedItinerari();
+            } catch (e) {
+                itinerariData = getEmbeddedData();
             }
         }
-        
-        function getEmbeddedItinerari() {
-            // Versione semplificata embedded come fallback
-            return [{
-      "id": "cristina_svezia_roma",
-        "nome": "La Roma di Cristina di Svezia",
-        "sottotitolo": "Un viaggio barocco tra arte e libertà",
-        "categoria": "Culturale",
-        "tema": "Storia e Barocco",
-        "difficolta": "Facile",
-        "personaggio": {
-            "nome": "Cristina di Svezia",
-            "anni": "1626-1689"
-        },
-        "descrizione": "Sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo. Divenne una delle più grandi mecenati del periodo barocco.",
-        "immagine_copertina": "https://images.unsplash.com/photo-1543428174-839006e8638b?q=80&w=1000",
-        "durata_totale_ore": 6,
-        "distanza_totale_km": 4.2,
-        "tappe": [
-            {
-                "numero": 1,
-                "poi_id": "porta_popolo",
-                "nome": "Porta del Popolo",
-                "coordinate": [41.9115, 12.4765],
-                "orario_consigliato": "09:00",
-                "momento_giornata": "alba",
-                "durata_visita_min": 45,
-                "emozione_target": "Trionfo",
-                "immagine": "https://images.unsplash.com/photo-1600623471616-b119b4a90e27?q=80&w=600",
-                "descrizione_breve": "L'ingresso trionfale della Regina.",
-                "descrizione": "Papa Alessandro VII commissionò al Bernini il restauro della facciata interna per accoglierla."
-            },
-            {
-                "numero": 2,
-                "poi_id": "pantheon",
-                "nome": "Pantheon",
-                "coordinate": [41.8986, 12.4769],
-                "orario_consigliato": "12:00",
-                "momento_giornata": "mezzogiorno",
-                "durata_visita_min": 30,
-                "emozione_target": "Meraviglia",
-                "immagine": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=600",
-                "descrizione_breve": "L'immortalità della Roma classica.",
-                "descrizione": "La regina amava circondarsi della maestosità degli imperatori del passato."
-            },
-            {
-                "numero": 3,
-                "poi_id": "galleria_corsini",
-                "nome": "Galleria Corsini",
-                "coordinate": [41.8931, 12.4674],
-                "orario_consigliato": "16:00",
-                "momento_giornata": "pomeriggio",
-                "durata_visita_min": 90,
-                "emozione_target": "Ispirazione",
-                "immagine": "https://images.unsplash.com/photo-1621501675128-87779f00a5d5?q=80&w=600",
-                "descrizione_breve": "La dimora definitiva della Regina.",
-                "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale."
-            },
-            {
-                "numero": 4,
-                "poi_id": "orto_botanico",
-                "nome": "Orto Botanico",
-                "coordinate": [41.8906, 12.4635],
-                "orario_consigliato": "19:00",
-                "momento_giornata": "tramonto",
-                "durata_visita_min": 60,
-                "emozione_target": "Mistero",
-                "immagine": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600",
-                "descrizione_breve": "Il lato esoterico tra scienza e alchimia.",
-                "descrizione": "Cristina amava ritirarsi in questi giardini per approfondire studi di scienze naturali."
-    ]
-}]
-        }
-        
-        // ========================================
-        // RENDERING HOME
-        // ========================================
-        function renderItinerariCards() {
+
+        function renderHome() {
             const container = document.getElementById('itinerari-container');
-            container.innerHTML = '';
-            
-            itinerariData.forEach(itinerario => {
-                const card = document.createElement('div');
-                card.className = 'itinerario-card';
-                card.onclick = () => startItinerario(itinerario.id);
-                
-                card.innerHTML = `
-<div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1525874684015-58379d421a52?auto=format&fit=crop&w=600&q=80')">                        <div class="card-badge">${itinerario.tema || 'Culturale'}</div>
+            container.innerHTML = itinerariData.map(it => `
+                <div class="itinerario-card" onclick="startItinerario('${it.id}')">
+                    <div class="card-image" style="background-image: url('${it.immagine_copertina}')">
+                        <div class="card-badge">${it.categoria || 'Cultura'}</div>
                     </div>
                     <div class="card-content">
-                        <h3>${itinerario.nome}</h3>
-                        
-                        <p class="card-subtitle">${itinerario.sottotitolo || ''}</p>
-                        <p class="card-description">${itinerario.descrizione}</p>
-                        
+                        <h3>${it.nome}</h3>
+                        <p class="card-subtitle">${it.sottotitolo || ''}</p>
+                        <p>${it.descrizione.substring(0, 120)}...</p>
                         <div class="card-stats">
-                            <div class="stat">
-                                <div class="stat-value">⏱️ ${itinerario.durata_totale_ore}h</div>
-                                <div class="stat-label">Durata</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value">📍 ${itinerario.tappe.length}</div>
-                                <div class="stat-label">Tappe</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value">🚶 ${itinerario.distanza_totale_km}km</div>
-                                <div class="stat-label">Distanza</div>
-                            </div>
+                            <div class="stat"><span class="stat-value">⏱️ ${it.durata_totale_ore}h</span><span class="stat-label">Durata</span></div>
+                            <div class="stat"><span class="stat-value">📍 ${it.tappe.length}</span><span class="stat-label">Tappe</span></div>
+                            <div class="stat"><span class="stat-value">🚶 ${it.distanza_totale_km}km</span><span class="stat-label">Distanza</span></div>
                         </div>
-                        
-                        <button class="card-button">Inizia Passeggiata →</button>
                     </div>
-                `;
-                
-                container.appendChild(card);
-            });
+                </div>
+            `).join('');
         }
-        
-        // ========================================
-        // START ITINERARIO
-        // ========================================
-        function startItinerario(itinerarioId) {
-            currentItinerario = itinerariData.find(it => it.id === itinerarioId);
-            if (!currentItinerario) return;
-            
-            currentTappaIndex = 0;
-            
+
+        function startItinerario(id) {
+            currentItinerario = itinerariData.find(it => it.id === id);
             showView('itinerary');
-            initMap();
-            renderTimeline();
-            loadTappa(0);
+            setTimeout(() => {
+                initMap();
+                loadTappa(0);
+            }, 300);
         }
-        
-        // ========================================
-        // GESTIONE VIEWS
-        // ========================================
-        function showView(viewName) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(`${viewName}-view`).classList.add('active');
-            
-            const backBtn = document.getElementById('back-to-itinerary-btn');
-            backBtn.style.display = viewName === 'itinerary' ? 'inline-block' : 'none';
-        }
-        
-        // ========================================
-        // MAPPA
-        // ========================================
+
         function initMap() {
             if (map) map.remove();
+            map = L.map('map').setView([41.90, 12.47], 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
             
-            map = L.map('map').setView([41.9028, 12.4964], 13);
+            const coords = currentItinerario.tappe.map(t => t.coordinate);
+            routeLine = L.polyline(coords, {color: '#5d1010', weight: 4, dashArray: '5, 10'}).addTo(map);
             
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
-            
-            drawRoute();
-            addMarkers();
-        }
-        
-        function drawRoute() {
-            const coordinates = currentItinerario.tappe.map(t => t.coordinate);
-            
-            if (routeLine) map.removeLayer(routeLine);
-            
-            routeLine = L.polyline(coordinates, {
-                color: '#e74c3c',
-                weight: 4,
-                opacity: 0.7,
-                dashArray: '10, 10',
-                lineJoin: 'round'
-            }).addTo(map);
-            
-            map.fitBounds(routeLine.getBounds(), { padding: [50, 50] });
-        }
-        
-        function addMarkers() {
-            markers.forEach(m => map.removeLayer(m));
-            markers = [];
-            
-            currentItinerario.tappe.forEach((tappa, index) => {
-                const icon = momentIcons[tappa.momento_giornata] || '📍';
-                
-                const marker = L.marker(tappa.coordinate, {
-                    icon: L.divIcon({
-                        html: `<div style="font-size: 2em;">${icon}</div>`,
-                        className: 'custom-marker',
-                        iconSize: [40, 40]
-                    })
-                }).addTo(map);
-                
-                marker.bindPopup(`<b>Tappa ${tappa.numero}</b><br>${tappa.nome}`);
-                marker.on('click', () => loadTappa(index));
-                
-                markers.push(marker);
+            markers = currentItinerario.tappe.map((t, i) => {
+                const marker = L.marker(t.coordinate).addTo(map).bindPopup(t.nome);
+                marker.on('click', () => loadTappa(i));
+                return marker;
             });
+            map.fitBounds(routeLine.getBounds(), {padding: [50, 50]});
         }
-        
-        // ========================================
-        // TIMELINE
-        // ========================================
-        function renderTimeline() {
-            const container = document.getElementById('timeline-items');
-            container.innerHTML = '';
-            
-            currentItinerario.tappe.forEach((tappa, index) => {
-                const item = document.createElement('div');
-                item.className = 'timeline-item';
-                
-                if (index < currentTappaIndex) item.classList.add('completed');
-                else if (index === currentTappaIndex) item.classList.add('current');
-                else item.classList.add('upcoming');
-                
-                item.onclick = () => loadTappa(index);
-                
-                item.innerHTML = `
-                    <div class="timeline-icon">${momentIcons[tappa.momento_giornata]}</div>
-                    <div class="timeline-time">${tappa.orario_consigliato}</div>
-                    <div class="timeline-name">${tappa.nome}</div>
-                    <div class="timeline-duration">${tappa.durata_visita_min} min</div>
-                `;
-                
-                container.appendChild(item);
-            });
-            
-            updateProgress();
-        }
-        
-        function updateProgress() {
-            const progress = ((currentTappaIndex + 1) / currentItinerario.tappe.length) * 100;
-            document.getElementById('progress-fill').style.width = `${progress}%`;
-        }
-        
-        // ========================================
-        // CARICA TAPPA
-        // ========================================
+
         function loadTappa(index) {
             currentTappaIndex = index;
             const tappa = currentItinerario.tappe[index];
             
-            // Header
-            document.getElementById('tappa-numero').textContent = `${tappa.numero}`;
-            document.querySelector('#tappa-nome h2').textContent = tappa.nome;
-            document.querySelector('#tappa-nome .descrizione-breve').textContent = tappa.descrizione_breve || '';
+            document.getElementById('tappa-nome').textContent = tappa.nome;
+            document.getElementById('tappa-desc-breve').textContent = tappa.descrizione_breve || '';
             document.querySelector('#tappa-orario .time').textContent = tappa.orario_consigliato;
             document.querySelector('#tappa-orario .moment').textContent = tappa.momento_giornata;
-            
-            // Content
+
             renderTappaContent(tappa);
+            updateTimeline();
             
-            // Timeline
-            renderTimeline();
-            
-            // Mappa: centra su tappa corrente
-            map.setView(tappa.coordinate, 16, { animate: true });
+            map.setView(tappa.coordinate, 16);
             markers[index].openPopup();
             
-            // Buttons
-            document.querySelector('.nav-btn.prev').disabled = index === 0;
-            document.querySelector('.nav-btn.next').disabled = index === currentItinerario.tappe.length - 1;
+            document.querySelector('.btn-prev').disabled = index === 0;
+            document.querySelector('.btn-next').disabled = index === currentItinerario.tappe.length - 1;
         }
-        
+
         function renderTappaContent(tappa) {
             const container = document.getElementById('tappa-content');
             container.innerHTML = '';
-            
-            // Storia e Curiosità
-            if (tappa.storia || tappa.curiosita) {
-                const storiaSec = document.createElement('div');
-                storiaSec.className = 'esperienza-section';
-                storiaSec.innerHTML = `
-                    <h3>📜 Storia e Curiosità</h3>
-                    ${tappa.storia ? `<p><strong>Storia:</strong> ${tappa.storia}</p>` : ''}
-                    ${tappa.curiosita ? `<p><strong>Curiosità:</strong> ${tappa.curiosita}</p>` : ''}
-                `;
-                container.appendChild(storiaSec);
+
+            if (tappa.descrizione) {
+                const p = document.createElement('p');
+                p.textContent = tappa.descrizione;
+                container.appendChild(p);
             }
-            
-            // Esperienza Culturale
+
             if (tappa.esperienza_culturale) {
                 const exp = tappa.esperienza_culturale;
                 
-                // Musica
                 if (exp.musica) {
-                    const musicDiv = document.createElement('div');
-                    musicDiv.className = 'music-player';
-                    musicDiv.innerHTML = `
-                        <h4>🎵 ${exp.musica.movimento || 'Brano Musicale'}</h4>
-                        <audio controls>
-                            <source src="audio/${tappa.poi_id}.mp3" type="audio/mpeg">
-                            Il tuo browser non supporta l'audio.
-                        </audio>
-                        <div class="music-description">
-                            ${exp.musica.descrizione_musicale || ''}
-                        </div>
-                    `;
-                    container.appendChild(musicDiv);
+                    const music = document.createElement('div');
+                    music.className = 'music-player';
+                    music.innerHTML = `<h4>🎵 ${exp.musica.movimento || 'Ascolto'}</h4><p>${exp.musica.descrizione_musicale || ''}</p>`;
+                    container.appendChild(music);
                 }
-                
-                // Letteratura
+
                 if (exp.letteratura) {
-                    const litDiv = document.createElement('div');
-                    litDiv.className = 'citazione-box';
-                    litDiv.innerHTML = `
-                        <div class="citazione-text">"${exp.letteratura.citazione}"</div>
-                        <div class="citazione-author">— ${exp.letteratura.autore}, <em>${exp.letteratura.opera}</em> (${exp.letteratura.anno})</div>
-                    `;
-                    container.appendChild(litDiv);
+                    const lit = document.createElement('div');
+                    lit.className = 'citazione-box';
+                    lit.innerHTML = `<p>"${exp.letteratura.citazione}"</p><small>— ${exp.letteratura.autore}, ${exp.letteratura.opera}</small>`;
+                    container.appendChild(lit);
                 }
-                
-                // Atmosfera
+
                 if (exp.atmosfera) {
-                    const atmDiv = document.createElement('div');
-                    atmDiv.className = 'esperienza-section';
-                    atmDiv.innerHTML = `
-                        <h3>🌤️ Atmosfera del Luogo</h3>
-                        <div class="atmosfera-grid">
-                            <div class="atmosfera-item">
-                                <div class="icon">💡</div>
-                                <div class="label">Luce</div>
-                                <div class="value">${exp.atmosfera.luce || 'N/A'}</div>
-                            </div>
-                            <div class="atmosfera-item">
-                                <div class="icon">🌡️</div>
-                                <div class="label">Temperatura</div>
-                                <div class="value">${exp.atmosfera.temperatura_stimata || 'N/A'}</div>
-                            </div>
-                            <div class="atmosfera-item">
-                                <div class="icon">👥</div>
-                                <div class="label">Affollamento</div>
-                                <div class="value">${exp.atmosfera.affollamento || 'N/A'}</div>
-                            </div>
-                            <div class="atmosfera-item">
-                                <div class="icon">😌</div>
-                                <div class="label">Emozione</div>
-                                <div class="value">${exp.atmosfera.emozione_target || 'N/A'}</div>
-                            </div>
-                        </div>
-                        ${exp.atmosfera.consiglio_fotografico ? `<p style="margin-top: 15px;"><strong>📸 Fotografia:</strong> ${exp.atmosfera.consiglio_fotografico}</p>` : ''}
-                    `;
-                    container.appendChild(atmDiv);
+                    const atm = document.createElement('div');
+                    atm.className = 'esperienza-section';
+                    atm.innerHTML = `<h3>🌤️ Atmosfera</h3><div class="atmosfera-grid">
+                        <div class="atmosfera-item"><b>Luce</b><br>${exp.atmosfera.luce || '---'}</div>
+                        <div class="atmosfera-item"><b>Emozione</b><br>${exp.atmosfera.emozione_target || '---'}</div>
+                        <div class="atmosfera-item"><b>Affollamento</b><br>${exp.atmosfera.affollamento || '---'}</div>
+                    </div>`;
+                    container.appendChild(atm);
                 }
             }
         }
-        
-        // ========================================
-        // NAVIGAZIONE TAPPE
-        // ========================================
-        function previousTappa() {
-            if (currentTappaIndex > 0) {
-                loadTappa(currentTappaIndex - 1);
-            }
+
+        function updateTimeline() {
+            const tl = document.getElementById('timeline-items');
+            tl.innerHTML = currentItinerario.tappe.map((t, i) => `
+                <div class="timeline-item ${i === currentTappaIndex ? 'current' : ''}" onclick="loadTappa(${i})">
+                    <span style="color:var(--accent); font-weight:bold;">${t.orario_consigliato}</span><br>${t.nome}
+                </div>
+            `).join('');
+            const progress = ((currentTappaIndex + 1) / currentItinerario.tappe.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
         }
-        
-        function nextTappa() {
-            if (currentTappaIndex < currentItinerario.tappe.length - 1) {
-                loadTappa(currentTappaIndex + 1);
-            }
+
+        function showView(name) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(name + '-view').classList.add('active');
+            document.getElementById('back-to-itinerary-btn').style.display = name === 'itinerary' ? 'inline-block' : 'none';
         }
-        
-        // ========================================
-        // AVVIO
-        // ========================================
-        window.addEventListener('DOMContentLoaded', init);
+
+        function nextTappa() { if (currentTappaIndex < currentItinerario.tappe.length - 1) loadTappa(currentTappaIndex + 1); }
+        function previousTappa() { if (currentTappaIndex > 0) loadTappa(currentTappaIndex - 1); }
+
+        function getEmbeddedData() {
+            return [{
+                "id": "cristina_svezia_roma",
+                "nome": "La Roma di Cristina di Svezia",
+                "sottotitolo": "Un'anima barocca tra arte e libertà",
+                "categoria": "Percorso Storico",
+                "immagine_copertina": "https://images.unsplash.com/photo-1543428174-839006e8638b?q=80&w=1000",
+                "descrizione": "Ripercorri i passi della Regina ribelle attraverso i suoi luoghi preferiti a Roma, dall'ingresso trionfale di Porta del Popolo fino al suo rifugio segreto in Trastevere.",
+                "durata_totale_ore": 6, "distanza_totale_km": 4.2,
+                "tappe": [
+                    { "numero": 1, "nome": "Porta del Popolo", "coordinate": [41.9115, 12.4765], "orario_consigliato": "09:00", "momento_giornata": "alba", "descrizione_breve": "L'ingresso trionfale.", "descrizione": "Il luogo dove Cristina entrò a Roma accolta dai monumenti di Bernini." },
+                    { "numero": 2, "nome": "Pantheon", "coordinate": [41.8986, 12.4769], "orario_consigliato": "12:00", "momento_giornata": "mezzogiorno", "descrizione": "Il tempio dell'antico che Cristina amava studiare per la sua perfezione architettonica." },
+                    { "numero": 3, "nome": "Galleria Corsini", "coordinate": [41.8931, 12.4674], "orario_consigliato": "16:00", "momento_giornata": "pomeriggio", "descrizione": "La dimora dove la Regina fondò la sua accademia e dove morì circondata d'arte." },
+                    { "numero": 4, "nome": "Orto Botanico", "coordinate": [41.8906, 12.4635], "orario_consigliato": "19:00", "momento_giornata": "tramonto", "descrizione": "Il giardino segreto dove Cristina coltivava la passione per la botanica e l'alchimia." }
+                ]
+            }];
+        }
+
+        window.onload = init;
     </script>
 </body>
 </html>
