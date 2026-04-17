@@ -312,28 +312,32 @@
         async function loadData() {
             try {
                 const res = await fetch('data.json');
+                if(!res.ok) throw new Error("Errore network");
                 const data = await res.json();
                 itinerariData = data.itinerari;
             } catch (e) {
+                console.warn("Uso dati di fallback:", e);
                 itinerariData = getEmbeddedData();
             }
         }
 
         function renderHome() {
             const container = document.getElementById('itinerari-container');
+            if(!itinerariData) return;
+            
             container.innerHTML = itinerariData.map(it => `
                 <div class="itinerario-card" onclick="startItinerario('${it.id}')">
-                    <div class="card-image" style="background-image: url('${it.immagine_copertina}')">
+                    <div class="card-image" style="background-image: url('${it.immagine_copertina || ''}')">
                         <div class="card-badge">${it.categoria || 'Cultura'}</div>
                     </div>
                     <div class="card-content">
-                        <h3>${it.nome}</h3>
+                        <h3>${it.nome || 'Itinerario'}</h3>
                         <p class="card-subtitle">${it.sottotitolo || ''}</p>
-                        <p>${it.descrizione.substring(0, 120)}...</p>
+                        <p>${(it.descrizione || '').substring(0, 120)}...</p>
                         <div class="card-stats">
-                            <div class="stat"><span class="stat-value">⏱️ ${it.durata_totale_ore}h</span><span class="stat-label">Durata</span></div>
-                            <div class="stat"><span class="stat-value">📍 ${it.tappe.length}</span><span class="stat-label">Tappe</span></div>
-                            <div class="stat"><span class="stat-value">🚶 ${it.distanza_totale_km}km</span><span class="stat-label">Distanza</span></div>
+                            <div class="stat"><span class="stat-value">⏱️ ${it.durata_totale_ore || 0}h</span><span class="stat-label">Durata</span></div>
+                            <div class="stat"><span class="stat-value">📍 ${(it.tappe || []).length}</span><span class="stat-label">Tappe</span></div>
+                            <div class="stat"><span class="stat-value">🚶 ${it.distanza_totale_km || 0}km</span><span class="stat-label">Distanza</span></div>
                         </div>
                     </div>
                 </div>
@@ -342,6 +346,8 @@
 
         function startItinerario(id) {
             currentItinerario = itinerariData.find(it => it.id === id);
+            if(!currentItinerario) return;
+            
             showView('itinerary');
             setTimeout(() => {
                 initMap();
@@ -350,42 +356,69 @@
         }
 
         function initMap() {
-            if (map) map.remove();
-            map = L.map('map').setView([41.90, 12.47], 14);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-            
-            const coords = currentItinerario.tappe.map(t => t.coordinate);
-            routeLine = L.polyline(coords, {color: '#5d1010', weight: 4, dashArray: '5, 10'}).addTo(map);
-            
-            markers = currentItinerario.tappe.map((t, i) => {
-                const marker = L.marker(t.coordinate).addTo(map).bindPopup(t.nome);
-                marker.on('click', () => loadTappa(i));
-                return marker;
-            });
-            map.fitBounds(routeLine.getBounds(), {padding: [50, 50]});
+            try {
+                if (map) map.remove();
+                map = L.map('map').setView([41.90, 12.47], 14);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+                
+                if(!currentItinerario || !currentItinerario.tappe) return;
+
+                // Salva vita: disegna la mappa SOLO per le tappe che hanno coordinate valide
+                const coords = currentItinerario.tappe
+                    .filter(t => t.coordinate && Array.isArray(t.coordinate) && t.coordinate.length === 2)
+                    .map(t => t.coordinate);
+                
+                if(coords.length > 0) {
+                    routeLine = L.polyline(coords, {color: '#5d1010', weight: 4, dashArray: '5, 10'}).addTo(map);
+                    map.fitBounds(routeLine.getBounds(), {padding: [50, 50]});
+                }
+                
+                markers = currentItinerario.tappe.map((t, i) => {
+                    if(t.coordinate && Array.isArray(t.coordinate) && t.coordinate.length === 2) {
+                        const marker = L.marker(t.coordinate).addTo(map).bindPopup(t.nome || 'Tappa');
+                        marker.on('click', () => loadTappa(i));
+                        return marker;
+                    }
+                    return null;
+                });
+            } catch(e) {
+                console.error("Mappa non caricata:", e);
+            }
         }
 
         function loadTappa(index) {
-            currentTappaIndex = index;
-            const tappa = currentItinerario.tappe[index];
-            
-            document.getElementById('tappa-nome').textContent = tappa.nome;
-            document.getElementById('tappa-desc-breve').textContent = tappa.descrizione_breve || '';
-            document.querySelector('#tappa-orario .time').textContent = tappa.orario_consigliato;
-            document.querySelector('#tappa-orario .moment').textContent = tappa.momento_giornata;
+            try {
+                if(!currentItinerario || !currentItinerario.tappe || !currentItinerario.tappe[index]) return;
+                
+                currentTappaIndex = index;
+                const tappa = currentItinerario.tappe[index];
+                
+                document.getElementById('tappa-nome').textContent = tappa.nome || 'Tappa';
+                document.getElementById('tappa-desc-breve').textContent = tappa.descrizione_breve || '';
+                
+                const timeEl = document.querySelector('#tappa-orario .time');
+                const momentEl = document.querySelector('#tappa-orario .moment');
+                if(timeEl) timeEl.textContent = tappa.orario_consigliato || '';
+                if(momentEl) momentEl.textContent = tappa.momento_giornata || '';
 
-            renderTappaContent(tappa);
-            updateTimeline();
-            
-            map.setView(tappa.coordinate, 16);
-            markers[index].openPopup();
-            
-            document.querySelector('.btn-prev').disabled = index === 0;
-            document.querySelector('.btn-next').disabled = index === currentItinerario.tappe.length - 1;
+                renderTappaContent(tappa);
+                updateTimeline();
+                
+                if(tappa.coordinate && Array.isArray(tappa.coordinate) && tappa.coordinate.length === 2) {
+                    map.setView(tappa.coordinate, 16);
+                    if(markers[index]) markers[index].openPopup();
+                }
+                
+                document.querySelector('.btn-prev').disabled = index === 0;
+                document.querySelector('.btn-next').disabled = index === currentItinerario.tappe.length - 1;
+            } catch(e) {
+                console.error("Errore caricamento tappa:", e);
+            }
         }
 
         function renderTappaContent(tappa) {
             const container = document.getElementById('tappa-content');
+            if(!container) return;
             container.innerHTML = '';
 
             if (tappa.descrizione) {
@@ -407,7 +440,7 @@
                 if (exp.letteratura) {
                     const lit = document.createElement('div');
                     lit.className = 'citazione-box';
-                    lit.innerHTML = `<p>"${exp.letteratura.citazione}"</p><small>— ${exp.letteratura.autore}, ${exp.letteratura.opera}</small>`;
+                    lit.innerHTML = `<p>"${exp.letteratura.citazione || ''}"</p><small>— ${exp.letteratura.autore || ''}, ${exp.letteratura.opera || ''}</small>`;
                     container.appendChild(lit);
                 }
 
@@ -426,19 +459,24 @@
 
         function updateTimeline() {
             const tl = document.getElementById('timeline-items');
+            if(!tl || !currentItinerario || !currentItinerario.tappe) return;
+            
             tl.innerHTML = currentItinerario.tappe.map((t, i) => `
                 <div class="timeline-item ${i === currentTappaIndex ? 'current' : ''}" onclick="loadTappa(${i})">
-                    <span style="color:var(--accent); font-weight:bold;">${t.orario_consigliato}</span><br>${t.nome}
+                    <span style="color:var(--accent); font-weight:bold;">${t.orario_consigliato || ''}</span><br>${t.nome || 'Tappa'}
                 </div>
             `).join('');
+            
             const progress = ((currentTappaIndex + 1) / currentItinerario.tappe.length) * 100;
-            document.getElementById('progress-fill').style.width = progress + '%';
+            const pFill = document.getElementById('progress-fill');
+            if(pFill) pFill.style.width = progress + '%';
         }
 
         function showView(name) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById(name + '-view').classList.add('active');
-            document.getElementById('back-to-itinerary-btn').style.display = name === 'itinerary' ? 'inline-block' : 'none';
+            const btn = document.getElementById('back-to-itinerary-btn');
+            if(btn) btn.style.display = name === 'itinerary' ? 'inline-block' : 'none';
         }
 
         function nextTappa() { if (currentTappaIndex < currentItinerario.tappe.length - 1) loadTappa(currentTappaIndex + 1); }
