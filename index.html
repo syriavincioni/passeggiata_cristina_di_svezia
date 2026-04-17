@@ -6,130 +6,99 @@
     <title>Passeggiate Romane - Itinerari Tematici</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        /* === COLORI REGALI === */
-        :root {
-            --primary-regal: #5d1010; /* Bordeaux Profondo */
-            --gold-accent: #a68a56;   /* Oro Antico */
-            --cream-bg: #fdfcf0;      /* Carta Antica */
-            --dark-velvet: #2a0505;   /* Nero Velluto */
-            --text-main: #2c3e50;
-        }
+    /* === COLORI E STRUTTURA REGALE === */
+    :root {
+        --primary-regal: #5d1010; 
+        --gold-accent: #a68a56;   
+        --cream-bg: #fdfcf0;      
+        --dark-velvet: #2a0505;   
+    }
 
-        body {
-            font-family: 'Georgia', serif; /* Font più elegante */
-            background-color: var(--cream-bg);
-            margin: 0;
-        }
+    body {
+        font-family: 'Georgia', serif;
+        background-color: var(--cream-bg);
+        margin: 0;
+        overflow: hidden; /* Per non avere doppie barre di scorrimento */
+    }
 
-        /* === NAVBAR REGALE === */
-        #navbar {
-            background: linear-gradient(135deg, var(--primary-regal) 0%, var(--dark-velvet) 100%);
-            color: #f1d592; /* Testo color oro chiaro */
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border-bottom: 3px solid var(--gold-accent);
-        }
-        
-        #navbar h1 {
-            font-size: 1.6em;
-            color: var(--gold-accent);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            margin: 0;
-        }
-        
-        /* === PULSANTI NAVBAR === */
-        #nav-buttons button {
-            background: rgba(166, 138, 86, 0.2);
-            color: #f1d592;
-            border: 1px solid var(--gold-accent);
-            padding: 8px 18px;
-            margin-left: 10px;
-            border-radius: 4px;
-            font-family: 'Georgia', serif;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        #nav-buttons button:hover {
-            background: var(--gold-accent);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        /* === HOME VIEW === */
-        #home-view h2 {
-            color: var(--primary-regal);
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+    /* === NAVBAR === */
+    #navbar {
+        background: linear-gradient(135deg, var(--primary-regal) 0%, var(--dark-velvet) 100%);
+        color: #f1d592;
+        padding: 10px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        border-bottom: 3px solid var(--gold-accent);
+        height: 60px;
+        box-sizing: border-box;
+    }
 
-        .itinerario-card {
-            border: 1px solid rgba(166, 138, 86, 0.3);
-            background: white;
-        }
+    #navbar h1 { font-size: 1.4em; color: var(--gold-accent); margin: 0; }
 
-        .card-badge {
-            background: var(--primary-regal); /* Badge bordeaux invece che rosso */
-            border: 1px solid var(--gold-accent);
-        }
+    #nav-buttons button {
+        background: rgba(166, 138, 86, 0.2);
+        color: #f1d592;
+        border: 1px solid var(--gold-accent);
+        padding: 5px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-        .stat-value {
-            color: var(--primary-regal);
-        }
+    /* === VIEWS === */
+    .view { display: none; }
+    .view.active { display: block; }
 
-        .card-button {
-            background: linear-gradient(135deg, var(--gold-accent) 0%, #8a6d3b 100%);
-            border: none;
-        }
+    /* === HOME VIEW === */
+    #home-view { padding: 40px; max-width: 1200px; margin: 0 auto; color: var(--text-main); height: calc(100vh - 60px); overflow-y: auto; }
+    .itinerari-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .itinerario-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #ddd; }
 
-        /* === TIMELINE SIDEBAR === */
-        #timeline-sidebar {
-            background: linear-gradient(180deg, var(--dark-velvet) 0%, var(--primary-regal) 100%);
-            border-right: 2px solid var(--gold-accent);
-        }
-        
-        #timeline-title {
-            color: var(--gold-accent);
-            text-transform: uppercase;
-            font-size: 1em;
-            letter-spacing: 2px;
-        }
-        
-        #progress-fill {
-            background: var(--gold-accent);
-        }
-        
-        .timeline-item.current {
-            border-left-color: var(--gold-accent);
-            background: rgba(166, 138, 86, 0.2);
-        }
-        
-        .timeline-time {
-            color: var(--gold-accent);
-        }
+    /* === ITINERARY VIEW (QUI C'È LA MAPPA!) === */
+    #itinerary-view {
+        display: flex;
+        height: calc(100vh - 60px); /* Fondamentale per vedere la mappa */
+    }
 
-        /* === DETTAGLI TAPPA === */
-        #tappa-numero {
-            color: var(--gold-accent);
-            font-family: 'Times New Roman', serif;
-        }
+    #timeline-sidebar {
+        width: 300px;
+        background: linear-gradient(180deg, var(--dark-velvet) 0%, var(--primary-regal) 100%);
+        color: white;
+        padding: 20px;
+        overflow-y: auto;
+        border-right: 2px solid var(--gold-accent);
+    }
 
-        .nav-btn.next {
-            background: var(--primary-regal);
-        }
+    #itinerary-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
 
-        .esperienza-section {
-            border-left: 4px solid var(--gold-accent);
-            background: #fff;
-        }
+    #map-container {
+        flex: 1; /* Questo fa sì che la mappa occupi lo spazio sopra */
+        position: relative;
+    }
 
-        .esperienza-section h3 {
-            color: var(--primary-regal);
-        }
-    </style>
+    #map { width: 100%; height: 100%; } /* Senza questo la mappa è invisibile */
+
+    #tappa-details {
+        height: 35%; /* La parte bianca sotto la mappa */
+        background: white;
+        padding: 20px;
+        overflow-y: auto;
+        border-top: 3px solid var(--gold-accent);
+    }
+
+    /* === DETTAGLI TAPPA === */
+    #tappa-numero { color: var(--gold-accent); font-size: 2.5em; font-weight: bold; }
+    .nav-btn.next { background: var(--primary-regal); color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+    
+    /* Timeline items */
+    .timeline-item { padding: 10px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; border-left: 3px solid transparent; }
+    .timeline-item.current { border-left-color: var(--gold-accent); background: rgba(166,138,86,0.2); }
+</style>
 </head>
 <body>
     <!-- Navigation Bar -->
