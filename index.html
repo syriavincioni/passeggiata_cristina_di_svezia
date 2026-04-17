@@ -265,49 +265,71 @@
             // Versione semplificata embedded come fallback
             return [{
       "id": "cristina_svezia_roma",
-      "nome": "La Roma di Cristina di Svezia",
-      "sottotitolo": "Un viaggio barocco tra arte e libertà",
-      "personaggio": {
-        "nome": "Cristina di Svezia",
-        "anni": "1626-1689"
-      },
-      "descrizione": "Sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo, trasferendosi a Roma nel 1655. Divenne una delle più grandi mecenati, collezioniste e animatrici culturali del periodo barocco.",
-      "immagine_copertina": "https://images.unsplash.com/photo-1543428174-839006e8638b?q=80&w=1000",
-      "durata_totale_ore": 6,
-      "distanza_totale_km": 4.2,
-      "tappe": [
-        {
-          "numero": 1,
-          "nome": "Porta del Popolo",
-          "coordinate": [41.9115, 12.4765],
-          "immagine": "https://images.unsplash.com/photo-1600623471616-b119b4a90e27?q=80&w=600",
-          "descrizione_breve": "L'ingresso trionfale di Cristina a Roma nel dicembre del 1655.",
-          "descrizione": "Papa Alessandro VII commissionò a Gian Lorenzo Bernini il restauro della facciata interna per accogliere la Regina. L'architetto vi incise il celebre messaggio di benvenuto: 'Felici faustoque ingressui'. Questo varco simboleggia l'inizio della sua nuova vita romana."
+        "nome": "La Roma di Cristina di Svezia",
+        "sottotitolo": "Un viaggio barocco tra arte e libertà",
+        "categoria": "Culturale",
+        "tema": "Storia e Barocco",
+        "difficolta": "Facile",
+        "personaggio": {
+            "nome": "Cristina di Svezia",
+            "anni": "1626-1689"
         },
-        {
-          "numero": 2,
-          "nome": "Pantheon",
-          "coordinate": [41.8986, 12.4769],
-          "immagine": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=600",
-          "descrizione_breve": "L'immortalità della Roma classica che Cristina tanto ammirava.",
-          "descrizione": "La regina era un'avida collezionista di sculture antiche e amava circondarsi della maestosità degli imperatori del passato. Questo tempio rappresentava per lei il legame indissolubile tra la grandezza del passato e l'ambizione del presente."
-        },
-        {
-          "numero": 3,
-          "nome": "Galleria Corsini",
-          "coordinate": [41.8931, 12.4674],
-          "immagine": "https://images.unsplash.com/photo-1621501675128-87779f00a5d5?q=80&w=600",
-          "descrizione_breve": "La dimora definitiva e crocevia per le menti più brillanti d'Europa.",
-          "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale d'eccellenza. Tra queste mura, circondata da arte e libri, la Regina esercitò il suo potere patrocinando artisti del calibro di Arcangelo Corelli."
-        },
-        {
-          "numero": 4,
-          "nome": "Orto Botanico",
-          "coordinate": [41.8906, 12.4635],
-          "immagine": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600",
-          "descrizione_breve": "Il lato più esoterico della sovrana, tra scienza e alchimia.",
-          "descrizione": "Situato nel parco retrostante il palazzo, Cristina amava ritirarsi in questi giardini per approfondire studi di scienze naturali e alchimia che andavano oltre le convenzioni del tempo, riflettendo sui segreti della materia."
-             } 
+        "descrizione": "Sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo. Divenne una delle più grandi mecenati del periodo barocco.",
+        "immagine_copertina": "https://images.unsplash.com/photo-1543428174-839006e8638b?q=80&w=1000",
+        "durata_totale_ore": 6,
+        "distanza_totale_km": 4.2,
+        "tappe": [
+            {
+                "numero": 1,
+                "poi_id": "porta_popolo",
+                "nome": "Porta del Popolo",
+                "coordinate": [41.9115, 12.4765],
+                "orario_consigliato": "09:00",
+                "momento_giornata": "alba",
+                "durata_visita_min": 45,
+                "emozione_target": "Trionfo",
+                "immagine": "https://images.unsplash.com/photo-1600623471616-b119b4a90e27?q=80&w=600",
+                "descrizione_breve": "L'ingresso trionfale della Regina.",
+                "descrizione": "Papa Alessandro VII commissionò al Bernini il restauro della facciata interna per accoglierla."
+            },
+            {
+                "numero": 2,
+                "poi_id": "pantheon",
+                "nome": "Pantheon",
+                "coordinate": [41.8986, 12.4769],
+                "orario_consigliato": "12:00",
+                "momento_giornata": "mezzogiorno",
+                "durata_visita_min": 30,
+                "emozione_target": "Meraviglia",
+                "immagine": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=600",
+                "descrizione_breve": "L'immortalità della Roma classica.",
+                "descrizione": "La regina amava circondarsi della maestosità degli imperatori del passato."
+            },
+            {
+                "numero": 3,
+                "poi_id": "galleria_corsini",
+                "nome": "Galleria Corsini",
+                "coordinate": [41.8931, 12.4674],
+                "orario_consigliato": "16:00",
+                "momento_giornata": "pomeriggio",
+                "durata_visita_min": 90,
+                "emozione_target": "Ispirazione",
+                "immagine": "https://images.unsplash.com/photo-1621501675128-87779f00a5d5?q=80&w=600",
+                "descrizione_breve": "La dimora definitiva della Regina.",
+                "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale."
+            },
+            {
+                "numero": 4,
+                "poi_id": "orto_botanico",
+                "nome": "Orto Botanico",
+                "coordinate": [41.8906, 12.4635],
+                "orario_consigliato": "19:00",
+                "momento_giornata": "tramonto",
+                "durata_visita_min": 60,
+                "emozione_target": "Mistero",
+                "immagine": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600",
+                "descrizione_breve": "Il lato esoterico tra scienza e alchimia.",
+                "descrizione": "Cristina amava ritirarsi in questi giardini per approfondire studi di scienze naturali."
     ]
 }]
         }
