@@ -31,7 +31,7 @@
               "musica": {
             "movimento": "Sinfonia Trionfale",
             "descrizione_musicale": "Un ingresso maestoso richiede un'accoglienza reale. Le note squillanti e festive di Alessandro Scarlatti, che in seguito lavorò proprio al servizio di Cristina, celebrano il suo arrivo nell'Urbe.",
-            "file_audio": "Alessandro_Scarlatti_-_Sinfonia_avanti_lOpera_Griselda.mp3"
+            "file_audio": "Scarlatti.mp3"
           }
             },
             {
@@ -49,7 +49,7 @@
               "musica": {
             "movimento": "Echi dell'Antichità",
             "descrizione_musicale": "Il suono solenne e dilatato dell'organo di Girolamo Frescobaldi. Una musica sacra e sospesa che sembra salire dritta verso l'Oculo, perdendosi nel cielo di Roma.",
-            "file_audio": "Girolamo_Frescobaldi_-_Toccata_per_lElevazione.mp3"
+            "file_audio": "Frescobaldi.mp3"
           }
             },
             {
@@ -67,7 +67,7 @@
               "musica": {
             "movimento": "Sonata da Chiesa a Tre",
             "descrizione_musicale": "Arcangelo Corelli era il musicista preferito della Regina. Chiudi gli occhi: le sue sonate venivano eseguite dal vivo proprio in questi saloni durante le riunioni della sua Accademia.",
-            "file_audio": "A._Corelli_-_Sonate_da_Chiesa_Op.1_-_No.1_in_F_Major.mp3"
+            "file_audio": "corelli.mp3"
           }
             },
             {
@@ -85,7 +85,7 @@
               "musica": {
             "movimento": "Toccata Arpeggiata per Tiorba",
             "descrizione_musicale": "Le note intime, ipnotiche e misteriose della tiorba accompagnano il tramonto. È il suono perfetto per i ritiri solitari di Cristina tra i segreti dell'alchimia e della botanica.",
-            "file_audio": "Girolamo_Kapsberger_15801651_-_Toccata_Arpeggiata.mp3"
+            "file_audio": "Kapsberger.mp3"
           }
       ]
     }
