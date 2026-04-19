@@ -498,7 +498,7 @@
                 
                 // Musica
                 if (exp.musica) {
-                    let audioPlayer = exp.musica.file_audio ? `<audio controls style="width: 100%; margin-top: 15px; border-radius: 5px;"><source src="${exp.musica.file_audio}" type="audio/mpeg"></audio>` : '';
+                    let audioPlayer = `<audio controls style="width: 100%; margin-top: 15px; border-radius: 5px;"><source src="${exp.musica.file_audio}"></audio>`;
                     container.innerHTML += `
                         <div class="music-player">
                             <h4 style="margin-top:0;">🎵 ${exp.musica.movimento || 'Ascolto Consigliato'}</h4>
