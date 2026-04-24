@@ -384,6 +384,11 @@
                     <div class="card-content">
                         <h3>${it.nome}</h3>
                         <p style="color:#7f8c8d; font-style:italic; margin-bottom:15px;">${it.sottotitolo || ''}</p>
+                        <div style="background:#fdfaf4; padding:12px; border-radius:8px; margin:15px 0; font-size:0.9em; border:1px solid var(--accent); border-left:4px solid var(--accent);">
+                            <strong>💰 Costo:</strong> ${it.costo_stimato || 'N/A'}<br>
+                            <strong>📅 Periodo:</strong> ${it.migliore_periodo_anno || 'N/A'}
+                        </div>
+                        
                         <p>${it.descrizione || ''}</p>
                         <div class="card-stats">
                             <div class="stat"><span class="stat-value">⏱️ ${it.durata_totale_ore || 0}h</span><span class="stat-label">Durata</span></div>
