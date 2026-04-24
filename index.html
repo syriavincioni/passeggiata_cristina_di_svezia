@@ -574,20 +574,6 @@
                 `;
             }
         }
-            // 2. Box Info Pratiche (Metadata)
-            if (tappa.metadata) {
-                const meta = tappa.metadata;
-                container.innerHTML += `
-                    <div class="metadata-box">
-                        <strong style="color:var(--primary); font-size:1.1em; margin-bottom:10px; display:block;">ℹ️ Info Pratiche</strong>
-                        <strong>Costo:</strong> ${meta.accessibilita || 'N/A'}<br>
-                        <strong>Orari:</strong> ${meta.orari_standard || 'N/A'}<br>
-                        <strong>Servizi:</strong> ${(meta.servizi || []).join(', ') || 'N/A'}
-                    </div>
-                `;
-            }
-        }
-
         // 8. Aggiorna la Timeline laterale
         function updateTimeline() {
             const tl = document.getElementById('timeline-items');
