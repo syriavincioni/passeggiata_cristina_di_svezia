@@ -266,6 +266,8 @@
         
         /* Icone mappa senza sfondo bianco */
         .custom-marker { background: transparent; border: none; }
+        .spostamento-badge { background: #e8f4f8; color: #2980b9; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; display: inline-block; font-weight: bold; font-family: sans-serif; font-size: 0.9em; border: 1px solid #b3d7e8; }
+        .metadata-box { background: #fdfaf4; border: 1px solid var(--accent); padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; border-left: 4px solid var(--accent); }
     </style>
 </head>
 <body>
@@ -478,6 +480,13 @@
         function renderTappaContent(tappa) {
             const container = document.getElementById('tappa-content');
             container.innerHTML = '';
+            // 1. Badge Spostamento
+            if (tappa.tempo_spostamento_da_tappa_precedente) {
+                const sp = tappa.tempo_spostamento_da_tappa_precedente;
+                container.innerHTML += `<div class="spostamento-badge">🚶‍♂️ Da tappa precedente: ${sp.a_piedi} (${sp.distanza_km} km)</div>`;
+            } else if (tappa.indicazioni_arrivo) {
+                container.innerHTML += `<div class="spostamento-badge">🚇 Arrivo: ${tappa.indicazioni_arrivo}</div>`;
+            }
 
             // Sezione Base: Descrizione, Storia e Curiosità
             if (tappa.descrizione) {
@@ -545,6 +554,18 @@
                         </div>
                     `;
                 }
+            }
+            // 2. Box Info Pratiche (Metadata)
+            if (tappa.metadata) {
+                const meta = tappa.metadata;
+                container.innerHTML += `
+                    <div class="metadata-box">
+                        <strong style="color:var(--primary); font-size:1.1em; margin-bottom:10px; display:block;">ℹ️ Info Pratiche</strong>
+                        <strong>Costo:</strong> ${meta.accessibilita || 'N/A'}<br>
+                        <strong>Orari:</strong> ${meta.orari_standard || 'N/A'}<br>
+                        <strong>Servizi:</strong> ${(meta.servizi || []).join(', ') || 'N/A'}
+                    </div>
+                `;
             }
         }
 
