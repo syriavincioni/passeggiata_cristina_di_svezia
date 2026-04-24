@@ -353,17 +353,19 @@
 
         // 2. Caricamento Dati (Tenta dal JSON, se fallisce usa i dati interni)
         async function loadData() {
-            try {
-                const res = await fetch('data.json');
-                if(!res.ok) throw new Error("JSON non caricato");
-                const data = await res.json();
-                itinerariData = data.itinerari;
-            } catch (error) {
-                console.log("Uso i dati di emergenza incorporati nel file.");
-                itinerariData = getEmbeddedData();
-            }
-        }
+    try {
+        const res = await fetch('data.json');
+        const text = await res.text(); // <-- prima testo
+        const data = JSON.parse(text); // <-- qui intercetti errore
+        
+        itinerariData = data.itinerari;
 
+    } catch (error) {
+        console.error("Errore JSON:", error);
+        console.warn("Uso dati embedded");
+        itinerariData = getEmbeddedData();
+    }
+}
         // 3. Stampa le Card nella Home
         function renderHome() {
             const container = document.getElementById('itinerari-container');
