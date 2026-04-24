@@ -2,91 +2,152 @@
   "itinerari": [
     {
       "id": "cristina_svezia_roma",
-        "nome": "Dalla corona al coro: Roma ai piedi di una Regina",
-        "sottotitolo": "Sulle tracce di Cristina di Svezia: un viaggio barocco tra arte e libertà",
-        "categoria": "Culturale",
-        "tema": "Storia e Barocco",
-        "difficolta": "Facile",
-        "personaggio": {
-            "nome": "Cristina di Svezia",
-            "anni": "1626-1689"
-        },
-        "descrizione": "Cristina di Svezia, sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo. Divenne una delle più grandi mecenati del periodo barocco.",
-        "immagine_copertina": "https://romeguides.it/wp-content/uploads/2022/01/Christina-di_svezia.jpg",
-        "durata_totale_ore": 6,
-        "distanza_totale_km": 4.2,
-        "tappe": [
-            {
-                "numero": 1,
-                "poi_id": "porta_popolo",
-                "nome": "Porta del Popolo",
-                "coordinate": [41.9115, 12.4765],
-                "orario_consigliato": "07:00",
-                "momento_giornata": "alba",
-                "durata_visita_min": 45,
-                "emozione_target": "Trionfo",
-                "immagine": "https://images.unsplash.com/photo-1600623471616-b119b4a90e27?q=80&w=600",
-                "descrizione_breve": "L'ingresso trionfale della Regina.",
-                "descrizione": "Papa Alessandro VII commissionò al Bernini il restauro della facciata interna per accoglierla.",
-              "musica": {
+      "nome": "Dalla corona al coro: Roma ai piedi di una Regina",
+      "sottotitolo": "Sulle tracce di Cristina di Svezia: un viaggio barocco tra arte e libertà",
+      "categoria": "Culturale",
+      "tema": "Storia e Barocco",
+      "difficolta": "Facile",
+      "personaggio": {
+        "nome": "Cristina di Svezia",
+        "anni": "1626-1689"
+      },
+      "descrizione": "Cristina di Svezia, sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo. Divenne una delle più grandi mecenati del periodo barocco.",
+      "immagine_copertina": ""https://images.unsplash.com/photo-1600623471616-b119b4a90e27?q=80&w=600",
+      "durata_totale_ore": 12,
+      "distanza_totale_km": 4.2,
+      "note_logistiche": "Il percorso si snoda nel cuore del centro storico. I sanpietrini richiedono calzature adeguate. Le tappe sono tutte raggiungibili a piedi passeggiando per i vicoli storici.",
+      "accessibilita": "Tutte le tappe principali sono accessibili. L'Orto Botanico presenta alcuni sentieri in pendenza e sterrati.",
+      "costo_stimato": "Circa 17€ (Ingresso Pantheon 5€, Galleria Corsini 12€). Orto Botanico e Porta del Popolo sono gratuiti o visibili dall'esterno.",
+      "migliore_periodo_anno": "Autunno o Primavera (luce perfetta e clima ideale per le passeggiate)",
+      "consigli_pratici": [
+        "Portare una borraccia d'acqua (ci sono i famosi 'nasoni' romani lungo il percorso)",
+        "Prenotare online i biglietti per Galleria Corsini e Pantheon per saltare le file",
+        "Assicurarsi di avere la batteria del telefono carica per l'ascolto musicale"
+      ],
+      "cosa_portare": [
+        "Smartphone con mappe",
+        "Cuffie o auricolari isolanti",
+        "Scarpe comode",
+        "Powerbank"
+      ],
+      "tappe": [
+        {
+          "numero": 1,
+          "poi_id": "porta_popolo",
+          "nome": "Porta del Popolo",
+          "coordinate": [41.9115, 12.4765],
+          "orario_consigliato": "06:00",
+          "momento_giornata": "alba",
+          "durata_visita_min": 45,
+          "emozione_target": "Trionfo",
+          "immagine": "https://images.unsplash.com/photo-1600623471616-b119b4a90e27?q=80&w=600",
+          "descrizione_breve": "L'ingresso trionfale della Regina.",
+          "descrizione": "Papa Alessandro VII commissionò al Bernini il restauro della facciata interna per accoglierla.",
+          "indicazioni_arrivo": "Fermata Metro A 'Flaminio'. La porta si trova esattamente all'uscita della metropolitana.",
+          "musica": {
             "movimento": "Sinfonia Trionfale",
-            "descrizione_musicale": "Un ingresso maestoso richiede un'accoglienza reale. Le note squillanti e festive di Alessandro Scarlatti, che in seguito lavorò proprio al servizio di Cristina, celebrano il suo arrivo nell'Urbe.",
+            "compositore": "Alessandro Scarlatti",
+            "strumenti_protagonisti": ["Trombe", "Archi", "Timpani"],
+            "descrizione_musicale": "Un ingresso maestoso richiede un'accoglienza reale. Le note squillanti e festive di Alessandro Scarlatti celebrano il suo arrivo nell'Urbe.",
+            "note_ascolto": "Ascolta il brano posizionandoti esattamente al centro dell'arco, guardando verso l'obelisco di Piazza del Popolo.",
             "file_audio": "Scarlatti.mp3"
+          },
+          "metadata": {
+            "accessibilita": "Gratuito, all'aperto",
+            "orari_standard": "Sempre accessibile (24/7)",
+            "servizi": ["Stazione Metro", "Caffetterie nelle vicinanze"]
           }
-            },
-            {
-                "numero": 2,
-                "poi_id": "pantheon",
-                "nome": "Pantheon",
-                "coordinate": [41.8986, 12.4769],
-                "orario_consigliato": "12:00",
-                "momento_giornata": "mezzogiorno",
-                "durata_visita_min": 30,
-                "emozione_target": "Meraviglia",
-                "immagine": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=600",
-                "descrizione_breve": "L'immortalità della Roma classica.",
-                "descrizione": "La regina amava circondarsi della maestosità degli imperatori del passato.",
-              "musica": {
+        },
+        {
+          "numero": 2,
+          "poi_id": "pantheon",
+          "nome": "Pantheon",
+          "coordinate": [41.8986, 12.4769],
+          "orario_consigliato": "12:00",
+          "momento_giornata": "mezzogiorno",
+          "durata_visita_min": 30,
+          "emozione_target": "Meraviglia",
+          "immagine": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=600",
+          "descrizione_breve": "L'immortalità della Roma classica.",
+          "descrizione": "La regina amava circondarsi della maestosità degli imperatori del passato.",
+          "tempo_spostamento_da_tappa_precedente": {
+            "a_piedi": "18 min",
+            "distanza_km": 1.4
+          },
+          "musica": {
             "movimento": "Echi dell'Antichità",
-            "descrizione_musicale": "Il suono solenne e dilatato dell'organo di Girolamo Frescobaldi. Una musica sacra e sospesa che sembra salire dritta verso l'Oculo, perdendosi nel cielo di Roma.",
+            "compositore": "Girolamo Frescobaldi",
+            "strumenti_protagonisti": ["Organo a canne"],
+            "descrizione_musicale": "Il suono solenne e dilatato dell'organo di Girolamo Frescobaldi. Una musica sacra che sembra salire verso l'Oculo.",
+            "note_ascolto": "Alza il volume e posizionati al centro della navata rotonda, alzando lo sguardo verso la luce dell'Oculo.",
             "file_audio": "Frescobaldi.mp3"
+          },
+          "metadata": {
+            "accessibilita": "Ingresso a pagamento (5€)",
+            "orari_standard": "09:00 - 19:00",
+            "servizi": ["Audioguide", "Fila prioritaria prenotabile online"]
           }
-            },
-            {
-                "numero": 3,
-                "poi_id": "galleria_corsini",
-                "nome": "Galleria Corsini",
-                "coordinate": [41.8931, 12.4674],
-                "orario_consigliato": "16:00",
-                "momento_giornata": "pomeriggio",
-                "durata_visita_min": 90,
-                "emozione_target": "Ispirazione",
-                "immagine": "https://images.unsplash.com/photo-1621501675128-87779f00a5d5?q=80&w=600",
-                "descrizione_breve": "La dimora definitiva della Regina.",
-                "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale.",
-              "musica": {
+        },
+        {
+          "numero": 3,
+          "poi_id": "galleria_corsini",
+          "nome": "Galleria Corsini",
+          "coordinate": [41.8931, 12.4674],
+          "orario_consigliato": "16:00",
+          "momento_giornata": "pomeriggio",
+          "durata_visita_min": 90,
+          "emozione_target": "Ispirazione",
+          "immagine": "https://images.unsplash.com/photo-1621501675128-87779f00a5d5?q=80&w=600",
+          "descrizione_breve": "La dimora definitiva della Regina.",
+          "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale.",
+          "tempo_spostamento_da_tappa_precedente": {
+            "a_piedi": "15 min",
+            "distanza_km": 1.1
+          },
+          "musica": {
             "movimento": "Sonata da Chiesa a Tre",
-            "descrizione_musicale": "Arcangelo Corelli era il musicista preferito della Regina. Chiudi gli occhi: le sue sonate venivano eseguite dal vivo proprio in questi saloni durante le riunioni della sua Accademia.",
+            "compositore": "Arcangelo Corelli",
+            "strumenti_protagonisti": ["Violino", "Violoncello", "Liuto"],
+            "descrizione_musicale": "Arcangelo Corelli era il musicista preferito della Regina. Le sue sonate venivano eseguite dal vivo proprio in questi saloni.",
+            "note_ascolto": "Immagina i musicisti disposti a cerchio nei saloni affrescati mentre esplori la collezione di quadri.",
             "file_audio": "corelli.mp3"
+          },
+          "metadata": {
+            "accessibilita": "Ingresso a pagamento (12€, include Palazzo Barberini)",
+            "orari_standard": "10:00 - 18:00 (Chiuso il martedì)",
+            "servizi": ["Guardaroba", "Bookshop", "Accesso disabili"]
           }
-            },
-            {
-                "numero": 4,
-                "poi_id": "orto_botanico",
-                "nome": "Orto Botanico",
-                "coordinate": [41.8906, 12.4635],
-                "orario_consigliato": "19:00",
-                "momento_giornata": "tramonto",
-                "durata_visita_min": 60,
-                "emozione_target": "Mistero",
-                "immagine": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600",
-                "descrizione_breve": "Il lato esoterico tra scienza e alchimia.",
-                "descrizione": "Cristina amava ritirarsi in questi giardini per approfondire studi di scienze naturali.",
-              "musica": {
+        },
+        {
+          "numero": 4,
+          "poi_id": "orto_botanico",
+          "nome": "Orto Botanico",
+          "coordinate": [41.8906, 12.4635],
+          "orario_consigliato": "19:00",
+          "momento_giornata": "tramonto",
+          "durata_visita_min": 60,
+          "emozione_target": "Mistero",
+          "immagine": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600",
+          "descrizione_breve": "Il lato esoterico tra scienza e alchimia.",
+          "descrizione": "Cristina amava ritirarsi in questi giardini per approfondire studi di scienze naturali.",
+          "tempo_spostamento_da_tappa_precedente": {
+            "a_piedi": "5 min",
+            "distanza_km": 0.3
+          },
+          "musica": {
             "movimento": "Toccata Arpeggiata per Tiorba",
-            "descrizione_musicale": "Le note intime, ipnotiche e misteriose della tiorba accompagnano il tramonto. È il suono perfetto per i ritiri solitari di Cristina tra i segreti dell'alchimia e della botanica.",
+            "compositore": "Johann Hieronymus Kapsberger",
+            "strumenti_protagonisti": ["Tiorba (liuto gigante)"],
+            "descrizione_musicale": "Le note intime, ipnotiche e misteriose della tiorba accompagnano il tramonto. È il suono perfetto per i ritiri solitari di Cristina.",
+            "note_ascolto": "Cerca una panchina isolata tra le palme o le erbe officinali e goditi il silenzio e la penombra.",
             "file_audio": "Kapsberger.mp3"
+          },
+          "metadata": {
+            "accessibilita": "Ingresso a pagamento (4€)",
+            "orari_standard": "09:00 - 18:30 (Varia a seconda della stagione)",
+            "servizi": ["Visite guidate", "Bagni pubblici", "Fontanelle"]
           }
+        }
       ]
     }
   ]
