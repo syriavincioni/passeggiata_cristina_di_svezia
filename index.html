@@ -476,10 +476,11 @@
             document.querySelector('.btn-next').disabled = index === currentItinerario.tappe.length - 1;
         }
 
-        // 7. Renderizza le sezioni complesse (Il Cuore dell'Esame)
+       // 7. Renderizza le sezioni complesse (Il Cuore dell'Esame)
         function renderTappaContent(tappa) {
             const container = document.getElementById('tappa-content');
             container.innerHTML = '';
+
             // 1. Badge Spostamento
             if (tappa.tempo_spostamento_da_tappa_precedente) {
                 const sp = tappa.tempo_spostamento_da_tappa_precedente;
@@ -488,7 +489,7 @@
                 container.innerHTML += `<div class="spostamento-badge">🚇 Arrivo: ${tappa.indicazioni_arrivo}</div>`;
             }
 
-            // Sezione Base: Descrizione, Storia e Curiosità
+            // 2. Sezione Base: Descrizione, Storia e Curiosità
             if (tappa.descrizione) {
                 container.innerHTML += `<p style="font-size: 1.1em; margin-bottom: 25px;">${tappa.descrizione}</p>`;
             }
@@ -501,60 +502,78 @@
                 container.innerHTML += html;
             }
 
-            // Sezione Esperienza Culturale (Musica, Letteratura, Atmosfera, Arte)
-            if (tappa.esperienza_culturale) {
-                const exp = tappa.esperienza_culturale;
-                
-                // Musica
-                if (exp.musica) {
-                    let audioPlayer = `<audio controls style="width: 100%; margin-top: 15px; border-radius: 5px;"><source src="${exp.musica.file_audio}"></audio>`;
-                    container.innerHTML += `
-                        <div class="music-player">
-                            <h4 style="margin-top:0;">🎵 ${exp.musica.movimento || 'Ascolto Consigliato'}</h4>
-                            <p style="margin-bottom:0; font-size:0.95em; opacity:0.9;">${exp.musica.descrizione_musicale || ''}</p>
-                            ${audioPlayer}
-                        </div>
-                    `;
-                }
+            // 3. Esperienza Culturale (Musica, Letteratura, Atmosfera, Arte)
+            const exp = tappa.esperienza_culturale || {};
+            const musicaData = tappa.musica || exp.musica; // Supporta SIA il nostro JSON che quello del prof!
+            
+            // Musica
+            if (musicaData) {
+                let extraMusica = '';
+                if (musicaData.strumenti_protagonisti) extraMusica += `<strong>Strumenti:</strong> ${musicaData.strumenti_protagonisti.join(', ')}<br>`;
+                if (musicaData.note_ascolto) extraMusica += `<strong>🎧 Ascolto:</strong> ${musicaData.note_ascolto}`;
 
-                // Letteratura
-                if (exp.letteratura) {
-                    container.innerHTML += `
-                        <div class="citazione-box">
-                            <p>"${exp.letteratura.citazione}"</p>
-                            <div style="text-align:right; font-size:0.9em; color:#7f8c8d;">
-                                — ${exp.letteratura.autore}, <em>${exp.letteratura.opera}</em>
-                            </div>
-                        </div>
-                    `;
-                }
-
-                // Atmosfera
-                if (exp.atmosfera) {
-                    container.innerHTML += `
-                        <div class="esperienza-section">
-                            <h3>🌤️ Atmosfera del Luogo</h3>
-                            <div class="atmosfera-grid">
-                                <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">💡</div><b>Luce</b><br>${exp.atmosfera.luce || 'N/A'}</div>
-                                <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">😌</div><b>Emozione</b><br>${exp.atmosfera.emozione_target || 'N/A'}</div>
-                                <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">👥</div><b>Affollamento</b><br>${exp.atmosfera.affollamento || 'N/A'}</div>
-                            </div>
-                        </div>
-                    `;
-                }
-
-                // Arte Visiva
-                if (exp.arte_visiva) {
-                    container.innerHTML += `
-                        <div class="esperienza-section">
-                            <h3>🎨 Dettagli Artistici</h3>
-                            <p><strong>Stile:</strong> ${exp.arte_visiva.stile_architettonico || 'Non specificato'}</p>
-                            <p><strong>Architetto/Scultore:</strong> ${exp.arte_visiva.architetto || exp.arte_visiva.scultore || 'Ignoto'}</p>
-                            <p>${exp.arte_visiva.descrizione || ''}</p>
-                        </div>
-                    `;
-                }
+                let audioPlayer = musicaData.file_audio ? `<audio controls style="width: 100%; margin-top: 15px; border-radius: 5px;"><source src="${musicaData.file_audio}"></audio>` : '';
+                container.innerHTML += `
+                    <div class="music-player">
+                        <h4 style="margin-top:0;">🎵 ${musicaData.movimento || 'Ascolto Consigliato'}</h4>
+                        <p style="margin-bottom:10px; font-size:0.95em; opacity:0.9;">${musicaData.descrizione_musicale || ''}</p>
+                        <div style="font-size: 0.85em; opacity: 0.8;">${extraMusica}</div>
+                        ${audioPlayer}
+                    </div>
+                `;
             }
+
+            // Letteratura
+            if (exp.letteratura) {
+                container.innerHTML += `
+                    <div class="citazione-box">
+                        <p>"${exp.letteratura.citazione}"</p>
+                        <div style="text-align:right; font-size:0.9em; color:#7f8c8d;">
+                            — ${exp.letteratura.autore}, <em>${exp.letteratura.opera}</em>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Atmosfera
+            if (exp.atmosfera) {
+                container.innerHTML += `
+                    <div class="esperienza-section">
+                        <h3>🌤️ Atmosfera del Luogo</h3>
+                        <div class="atmosfera-grid">
+                            <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">💡</div><b>Luce</b><br>${exp.atmosfera.luce || 'N/A'}</div>
+                            <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">😌</div><b>Emozione</b><br>${exp.atmosfera.emozione_target || 'N/A'}</div>
+                            <div class="atmosfera-item"><div style="font-size:1.5em; margin-bottom:5px;">👥</div><b>Affollamento</b><br>${exp.atmosfera.affollamento || 'N/A'}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Arte Visiva
+            if (exp.arte_visiva) {
+                container.innerHTML += `
+                    <div class="esperienza-section">
+                        <h3>🎨 Dettagli Artistici</h3>
+                        <p><strong>Stile:</strong> ${exp.arte_visiva.stile_architettonico || 'Non specificato'}</p>
+                        <p><strong>Architetto/Scultore:</strong> ${exp.arte_visiva.architetto || exp.arte_visiva.scultore || 'Ignoto'}</p>
+                        <p>${exp.arte_visiva.descrizione || ''}</p>
+                    </div>
+                `;
+            }
+
+            // 4. Info Pratiche (Metadata)
+            if (tappa.metadata) {
+                const meta = tappa.metadata;
+                container.innerHTML += `
+                    <div class="metadata-box">
+                        <strong style="color:var(--primary); font-size:1.1em; margin-bottom:10px; display:block;">ℹ️ Info Pratiche</strong>
+                        <strong>Costo:</strong> ${meta.accessibilita || 'N/A'}<br>
+                        <strong>Orari:</strong> ${meta.orari_standard || 'N/A'}<br>
+                        <strong>Servizi:</strong> ${(meta.servizi || []).join(', ') || 'N/A'}
+                    </div>
+                `;
+            }
+        }
             // 2. Box Info Pratiche (Metadata)
             if (tappa.metadata) {
                 const meta = tappa.metadata;
