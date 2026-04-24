@@ -48,11 +48,15 @@
             "musica": {
               "movimento": "Sinfonia Trionfale",
               "compositore": "Alessandro Scarlatti",
-              "strumenti_protagonisti": ["Trombe", "Archi", "Timpani"],
+              "strumenti_protagonisti": [
+                "Trombe",
+                "Archi",
+                "Timpani"
+              ],
               "descrizione_musicale": "Un ingresso maestoso richiede un'accoglienza reale. Le note squillanti e festive di Alessandro Scarlatti celebrano il suo arrivo nell'Urbe.",
               "note_ascolto": "Ascolta il brano posizionandoti esattamente al centro dell'arco, guardando verso l'obelisco di Piazza del Popolo.",
               "file_audio": "Scarlatti.mp3",
-              "youtube_url": "https://youtu.be/8YYS-sqYg5s?si=BcR6xqtP-SRCFjZy"
+              "youtube_url": "https://youtu.be/8YYS-sqYg5s"
             },
             "letteratura": {
               "citazione": "Felici faustoque ingressui anno Domini MDCLV",
@@ -62,7 +66,10 @@
             },
             "atmosfera": {
               "luce": "Luce radente dell'alba",
-              "suoni_ambiente": ["Suoni di festa", "Scalpitio di cavalli"],
+              "suoni_ambiente": [
+                "Suoni di festa",
+                "Scalpitio di cavalli"
+              ],
               "emozione_target": "Trionfo e Rinascita",
               "affollamento": "Basso, ideale per ammirare le sculture"
             },
@@ -75,7 +82,10 @@
           "metadata": {
             "accessibilita": "Gratuito, all'aperto",
             "orari_standard": "Sempre accessibile (24/7)",
-            "servizi": ["Stazione Metro", "Caffetterie nelle vicinanze"]
+            "servizi": [
+              "Stazione Metro",
+              "Caffetterie nelle vicinanze"
+            ]
           }
         },
         {
@@ -98,11 +108,13 @@
             "musica": {
               "movimento": "Echi dell'Antichità",
               "compositore": "Girolamo Frescobaldi",
-              "strumenti_protagonisti": ["Organo a canne"],
+              "strumenti_protagonisti": [
+                "Organo a canne"
+              ],
               "descrizione_musicale": "Il suono solenne e dilatato dell'organo di Girolamo Frescobaldi. Una musica sacra che sembra salire verso l'Oculo.",
               "note_ascolto": "Alza il volume e posizionati al centro della navata rotonda, alzando lo sguardo verso la luce dell'Oculo.",
               "file_audio": "Frescobaldi.mp3",
-              "youtube_url": "https://youtu.be/qJ6DeO0Pvp8?si=x05RXnyMkMh4oz9N"
+              "youtube_url": "https://youtu.be/qJ6DeO0Pvp8"
             },
             "letteratura": {
               "citazione": "Un miracolo di architettura che sfida il tempo e lo spazio, dove Roma incontra l'eternità.",
@@ -111,7 +123,10 @@
             },
             "atmosfera": {
               "luce": "Luce zenitale potente che penetra dall'Oculo",
-              "suoni_ambiente": ["Echi lontani", "Passi sul marmo"],
+              "suoni_ambiente": [
+                "Echi lontani",
+                "Passi sul marmo"
+              ],
               "emozione_target": "Stupore ed Eternità",
               "affollamento": "Alto, cuore turistico della città"
             },
@@ -124,7 +139,10 @@
           "metadata": {
             "accessibilita": "Ingresso a pagamento (5€)",
             "orari_standard": "09:00 - 19:00",
-            "servizi": ["Audioguide", "Fila prioritaria prenotabile online"]
+            "servizi": [
+              "Audioguide",
+              "Fila prioritaria prenotabile online"
+            ]
           }
         },
         {
@@ -148,11 +166,15 @@
             "musica": {
               "movimento": "Sonata da Chiesa a Tre",
               "compositore": "Arcangelo Corelli",
-              "strumenti_protagonisti": ["Violino", "Violoncello", "Liuto"],
+              "strumenti_protagonisti": [
+                "Violino",
+                "Violoncello",
+                "Liuto"
+              ],
               "descrizione_musicale": "Arcangelo Corelli era il musicista preferito della Regina. Le sue sonate venivano eseguite dal vivo proprio in questi saloni.",
               "note_ascolto": "Immagina i musicisti disposti a cerchio nei saloni affrescati mentre esplori la collezione di quadri.",
               "file_audio": "corelli.mp3",
-              "youtube_url": "https://youtu.be/nV3_4Cw2P0s?si=irsAV-YZPpUU1BW_"
+              "youtube_url": "https://youtu.be/nV3_4Cw2P0s"
             },
             "letteratura": {
               "citazione": "Qui le arti e le scienze trovarono il loro asilo più sicuro sotto l'ala di una sovrana senza regno ma padrona del sapere.",
@@ -161,7 +183,10 @@
             },
             "atmosfera": {
               "luce": "Luce calda e diffusa attraverso i grandi finestroni",
-              "suoni_ambiente": ["Fruscio di abiti", "Pagine sfogliate"],
+              "suoni_ambiente": [
+                "Fruscio di abiti",
+                "Pagine sfogliate"
+              ],
               "emozione_target": "Ispirazione ed Eleganza",
               "affollamento": "Moderato, ambiente ovattato"
             },
@@ -174,7 +199,11 @@
           "metadata": {
             "accessibilita": "Ingresso a pagamento (12€, include Palazzo Barberini)",
             "orari_standard": "10:00 - 18:00 (Chiuso il martedì)",
-            "servizi": ["Guardaroba", "Bookshop", "Accesso disabili"]
+            "servizi": [
+              "Guardaroba",
+              "Bookshop",
+              "Accesso disabili"
+            ]
           }
         },
         {
@@ -197,11 +226,13 @@
             "musica": {
               "movimento": "Toccata Arpeggiata per Tiorba",
               "compositore": "Johann Hieronymus Kapsberger",
-              "strumenti_protagonisti": ["Tiorba (liuto gigante)"],
+              "strumenti_protagonisti": [
+                "Tiorba (liuto gigante)"
+              ],
               "descrizione_musicale": "Le note intime, ipnotiche e misteriose della tiorba accompagnano il tramonto. È il suono perfetto per i ritiri solitari di Cristina.",
               "note_ascolto": "Cerca una panchina isolata tra le palme o le erbe officinali e goditi il silenzio e la penombra.",
               "file_audio": "Kapsberger.mp3",
-              "youtube_url": "https://youtu.be/oBwsH5tRZE4?si=bQikDG2eoxDA6s--"
+              "youtube_url": "https://youtu.be/oBwsH5tRZE4"
             },
             "letteratura": {
               "citazione": "Nel segreto delle piante si nasconde la firma di Dio e la chiave per trasmutare la materia.",
@@ -211,7 +242,10 @@
             },
             "atmosfera": {
               "luce": "Colori caldi e crepuscolari del tramonto romano",
-              "suoni_ambiente": ["Canto degli uccelli", "Fruscio delle foglie"],
+              "suoni_ambiente": [
+                "Canto degli uccelli",
+                "Fruscio delle foglie"
+              ],
               "emozione_target": "Mistero e Contemplazione",
               "affollamento": "Basso, pace assoluta"
             },
@@ -223,7 +257,11 @@
           "metadata": {
             "accessibilita": "Ingresso a pagamento (4€)",
             "orari_standard": "09:00 - 18:30 (Varia a seconda della stagione)",
-            "servizi": ["Visite guidate", "Bagni pubblici", "Fontanelle"]
+            "servizi": [
+              "Visite guidate",
+              "Bagni pubblici",
+              "Fontanelle"
+            ]
           }
         }
       ]
