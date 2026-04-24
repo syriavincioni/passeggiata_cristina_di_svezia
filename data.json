@@ -13,7 +13,7 @@
       },
       "descrizione": "Cristina di Svezia, sovrana ribelle che abdicò al trono svedese per convertirsi al cattolicesimo. Divenne una delle più grandi mecenati del periodo barocco.",
       "immagine_copertina": "https://romeguides.it/wp-content/uploads/2022/01/Christina-di_svezia.jpg",
-      "durata_totale_ore": 12,
+      "durata_totale_ore": 10,
       "distanza_totale_km": 4.2,
       "note_logistiche": "Il percorso si snoda nel cuore del centro storico. I sanpietrini richiedono calzature adeguate. Le tappe sono tutte raggiungibili a piedi passeggiando per i vicoli storici.",
       "accessibilita": "Tutte le tappe principali sono accessibili. L'Orto Botanico presenta alcuni sentieri in pendenza e sterrati.",
@@ -36,21 +36,41 @@
           "poi_id": "porta_popolo",
           "nome": "Porta del Popolo",
           "coordinate": [41.9115, 12.4765],
-          "orario_consigliato": "06:00",
-          "momento_giornata": "alba",
+          "orario_consigliato": "09:00",
+          "momento_giornata": "mattino",
           "durata_visita_min": 45,
           "emozione_target": "Trionfo",
           "immagine": "https://tse3.mm.bing.net/th/id/OIP.h9uFZkZ-KfUgcIwQn8BK8gHaEq?rs=1&pid=ImgDetMain&o=7&rm=3",
           "descrizione_breve": "L'ingresso trionfale della Regina.",
           "descrizione": "Papa Alessandro VII commissionò al Bernini il restauro della facciata interna per accoglierla.",
+          "storia": "Cristina entrò a Roma il 23 dicembre 1655, a cavallo e vestita come un'amazzone, stupendo l'intera città.",
           "indicazioni_arrivo": "Fermata Metro A 'Flaminio'. La porta si trova esattamente all'uscita della metropolitana.",
-          "musica": {
-            "movimento": "Sinfonia Trionfale",
-            "compositore": "Alessandro Scarlatti",
-            "strumenti_protagonisti": ["Trombe", "Archi", "Timpani"],
-            "descrizione_musicale": "Un ingresso maestoso richiede un'accoglienza reale. Le note squillanti e festive di Alessandro Scarlatti celebrano il suo arrivo nell'Urbe.",
-            "note_ascolto": "Ascolta il brano posizionandoti esattamente al centro dell'arco, guardando verso l'obelisco di Piazza del Popolo.",
-            "file_audio": "Scarlatti.mp3"
+          "esperienza_culturale": {
+            "musica": {
+              "movimento": "Sinfonia Trionfale",
+              "compositore": "Alessandro Scarlatti",
+              "strumenti_protagonisti": ["Trombe", "Archi", "Timpani"],
+              "descrizione_musicale": "Un ingresso maestoso richiede un'accoglienza reale. Le note squillanti e festive di Alessandro Scarlatti celebrano il suo arrivo nell'Urbe.",
+              "note_ascolto": "Ascolta il brano posizionandoti esattamente al centro dell'arco, guardando verso l'obelisco di Piazza del Popolo.",
+              "file_audio": "Scarlatti.mp3"
+            },
+            "letteratura": {
+              "citazione": "Felici faustoque ingressui anno Domini MDCLV",
+              "autore": "Gian Lorenzo Bernini",
+              "opera": "Iscrizione dedicatoria",
+              "contesto": "Voluta personalmente da Papa Alessandro VII per omaggiare la conversione di Cristina."
+            },
+            "atmosfera": {
+              "luce": "Luce radente dell'alba",
+              "suoni_ambiente": ["Suoni di festa", "Scalpitio di cavalli"],
+              "emozione_target": "Trionfo e Rinascita",
+              "affollamento": "Basso, ideale per ammirare le sculture"
+            },
+            "arte_visiva": {
+              "stile_architettonico": "Barocco",
+              "architetto": "Gian Lorenzo Bernini",
+              "descrizione": "Nel geniale restauro dell'attico, Bernini fuse i simboli araldici per celebrare l'unione tra la Chiesa e la Svezia: lo stemma papale dei Chigi è sormontato dal covone di grano, simbolo della dinastia dei Vasa."
+            }
           },
           "metadata": {
             "accessibilita": "Gratuito, all'aperto",
@@ -74,13 +94,31 @@
             "a_piedi": "18 min",
             "distanza_km": 1.4
           },
-          "musica": {
-            "movimento": "Echi dell'Antichità",
-            "compositore": "Girolamo Frescobaldi",
-            "strumenti_protagonisti": ["Organo a canne"],
-            "descrizione_musicale": "Il suono solenne e dilatato dell'organo di Girolamo Frescobaldi. Una musica sacra che sembra salire verso l'Oculo.",
-            "note_ascolto": "Alza il volume e posizionati al centro della navata rotonda, alzando lo sguardo verso la luce dell'Oculo.",
-            "file_audio": "Frescobaldi.mp3"
+          "esperienza_culturale": {
+            "musica": {
+              "movimento": "Echi dell'Antichità",
+              "compositore": "Girolamo Frescobaldi",
+              "strumenti_protagonisti": ["Organo a canne"],
+              "descrizione_musicale": "Il suono solenne e dilatato dell'organo di Girolamo Frescobaldi. Una musica sacra che sembra salire verso l'Oculo.",
+              "note_ascolto": "Alza il volume e posizionati al centro della navata rotonda, alzando lo sguardo verso la luce dell'Oculo.",
+              "file_audio": "Frescobaldi.mp3"
+            },
+            "letteratura": {
+              "citazione": "Un miracolo di architettura che sfida il tempo e lo spazio, dove Roma incontra l'eternità.",
+              "autore": "Stendhal",
+              "opera": "Passeggiate Romane"
+            },
+            "atmosfera": {
+              "luce": "Luce zenitale potente che penetra dall'Oculo",
+              "suoni_ambiente": ["Echi lontani", "Passi sul marmo"],
+              "emozione_target": "Stupore ed Eternità",
+              "affollamento": "Alto, cuore turistico della città"
+            },
+            "arte_visiva": {
+              "stile_architettonico": "Architettura Romana",
+              "architetto": "Apollodoro di Damasco",
+              "descrizione": "La cupola in calcestruzzo non armato più grande del mondo. Rappresentava per Cristina il legame indissolubile tra la grandezza del passato e l'ambizione del presente."
+            }
           },
           "metadata": {
             "accessibilita": "Ingresso a pagamento (5€)",
@@ -100,17 +138,36 @@
           "immagine": "https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https://substack-post-media.s3.amazonaws.com/public/images/ae9c1d74-f902-4c35-b8fa-9858b3c79bcd_3968x2976.jpeg",
           "descrizione_breve": "La dimora definitiva della Regina.",
           "descrizione": "Qui Cristina fondò la sua accademia e trasformò i saloni in un centro culturale.",
+          "curiosita": "L'Accademia Reale di Cristina gettò le basi per quella che diventerà poi la famosa Accademia dell'Arcadia.",
           "tempo_spostamento_da_tappa_precedente": {
             "a_piedi": "15 min",
             "distanza_km": 1.1
           },
-          "musica": {
-            "movimento": "Sonata da Chiesa a Tre",
-            "compositore": "Arcangelo Corelli",
-            "strumenti_protagonisti": ["Violino", "Violoncello", "Liuto"],
-            "descrizione_musicale": "Arcangelo Corelli era il musicista preferito della Regina. Le sue sonate venivano eseguite dal vivo proprio in questi saloni.",
-            "note_ascolto": "Immagina i musicisti disposti a cerchio nei saloni affrescati mentre esplori la collezione di quadri.",
-            "file_audio": "corelli.mp3"
+          "esperienza_culturale": {
+            "musica": {
+              "movimento": "Sonata da Chiesa a Tre",
+              "compositore": "Arcangelo Corelli",
+              "strumenti_protagonisti": ["Violino", "Violoncello", "Liuto"],
+              "descrizione_musicale": "Arcangelo Corelli era il musicista preferito della Regina. Le sue sonate venivano eseguite dal vivo proprio in questi saloni.",
+              "note_ascolto": "Immagina i musicisti disposti a cerchio nei saloni affrescati mentre esplori la collezione di quadri.",
+              "file_audio": "corelli.mp3"
+            },
+            "letteratura": {
+              "citazione": "Qui le arti e le scienze trovarono il loro asilo più sicuro sotto l'ala di una sovrana senza regno ma padrona del sapere.",
+              "autore": "Giovanni Pietro Bellori",
+              "opera": "Vite de' pittori"
+            },
+            "atmosfera": {
+              "luce": "Luce calda e diffusa attraverso i grandi finestroni",
+              "suoni_ambiente": ["Fruscio di abiti", "Pagine sfogliate"],
+              "emozione_target": "Ispirazione ed Eleganza",
+              "affollamento": "Moderato, ambiente ovattato"
+            },
+            "arte_visiva": {
+              "stile_architettonico": "Tardo Barocco",
+              "architetto": "Ferdinando Fuga",
+              "descrizione": "Le stanze ospitavano una delle più grandi collezioni d'arte dell'epoca, inclusi quadri di Tiziano e Raffaello che la Regina si era portata dalla Svezia."
+            }
           },
           "metadata": {
             "accessibilita": "Ingresso a pagamento (12€, include Palazzo Barberini)",
@@ -134,13 +191,31 @@
             "a_piedi": "5 min",
             "distanza_km": 0.3
           },
-          "musica": {
-            "movimento": "Toccata Arpeggiata per Tiorba",
-            "compositore": "Johann Hieronymus Kapsberger",
-            "strumenti_protagonisti": ["Tiorba (liuto gigante)"],
-            "descrizione_musicale": "Le note intime, ipnotiche e misteriose della tiorba accompagnano il tramonto. È il suono perfetto per i ritiri solitari di Cristina.",
-            "note_ascolto": "Cerca una panchina isolata tra le palme o le erbe officinali e goditi il silenzio e la penombra.",
-            "file_audio": "Kapsberger.mp3"
+          "esperienza_culturale": {
+            "musica": {
+              "movimento": "Toccata Arpeggiata per Tiorba",
+              "compositore": "Johann Hieronymus Kapsberger",
+              "strumenti_protagonisti": ["Tiorba (liuto gigante)"],
+              "descrizione_musicale": "Le note intime, ipnotiche e misteriose della tiorba accompagnano il tramonto. È il suono perfetto per i ritiri solitari di Cristina.",
+              "note_ascolto": "Cerca una panchina isolata tra le palme o le erbe officinali e goditi il silenzio e la penombra.",
+              "file_audio": "Kapsberger.mp3"
+            },
+            "letteratura": {
+              "citazione": "Nel segreto delle piante si nasconde la firma di Dio e la chiave per trasmutare la materia.",
+              "autore": "Manoscritti Alchemici",
+              "opera": "Studi di Cristina di Svezia",
+              "contesto": "Riflette la passione della Regina per le scienze occulte e la botanica."
+            },
+            "atmosfera": {
+              "luce": "Colori caldi e crepuscolari del tramonto romano",
+              "suoni_ambiente": ["Canto degli uccelli", "Fruscio delle foglie"],
+              "emozione_target": "Mistero e Contemplazione",
+              "affollamento": "Basso, pace assoluta"
+            },
+            "arte_visiva": {
+              "stile_architettonico": "Giardino all'italiana",
+              "descrizione": "Un tempo giardino privato di Palazzo Corsini, utilizzato da Cristina per le sue ricerche esoteriche e naturali in assoluta riservatezza."
+            }
           },
           "metadata": {
             "accessibilita": "Ingresso a pagamento (4€)",
