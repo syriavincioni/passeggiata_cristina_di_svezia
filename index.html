@@ -416,47 +416,6 @@
             }, 300);
         }
 
-        // FUNZIONE NUOVA CHE DISEGNA IL BOX A SINISTRA
-        function renderGeneralInfo() {
-    const sidebar = document.getElementById('timeline-sidebar');
-    
-    const oldBox = document.getElementById('general-info-box');
-    if(oldBox) oldBox.remove();
-
-    const infoBox = document.createElement('div');
-    infoBox.id = 'general-info-box';
-    infoBox.style = "margin-top: 30px; margin-bottom: 25px; padding: 15px; background: rgba(0,0,0,0.25); border-radius: 8px; font-size: 0.85em; border: 1px solid rgba(166, 138, 86, 0.4);";
-
-    const it = currentItinerario;
-            if(!it) return;
-
-            // Riempie la scatola
-            infoBox.innerHTML = `
-                <div style="font-weight:bold; color:var(--accent); margin-bottom:12px; text-transform:uppercase; border-bottom: 1px solid rgba(166, 138, 86, 0.3); padding-bottom:5px; font-size:1.1em;">
-                    ℹ️ Info Generali
-                </div>
-                ${it.costo_stimato ? `<div style="margin-bottom:8px;"><strong>💰 Costo:</strong> <span style="opacity:0.9;">${it.costo_stimato}</span></div>` : ''}
-                ${it.migliore_periodo_anno ? `<div style="margin-bottom:8px;"><strong>📅 Periodo:</strong> <span style="opacity:0.9;">${it.migliore_periodo_anno}</span></div>` : ''}
-                ${it.accessibilita ? `<div style="margin-bottom:8px;"><strong>♿ Accessibilità:</strong> <span style="opacity:0.9;">${it.accessibilita}</span></div>` : ''}
-                ${it.note_logistiche ? `<div style="margin-bottom:12px;"><strong>🚶 Logistica:</strong> <span style="opacity:0.9;">${it.note_logistiche}</span></div>` : ''}
-                
-                ${it.consigli_pratici && it.consigli_pratici.length > 0 ? `
-                    <div style="font-weight:bold; color:var(--accent); margin:15px 0 5px 0;">💡 Consigli Pratici</div>
-                    <ul style="padding-left:15px; margin:0 0 12px 0; opacity:0.9;">
-                        ${it.consigli_pratici.map(c => `<li>${c}</li>`).join('')}
-                    </ul>
-                ` : ''}
-
-                ${it.cosa_portare && it.cosa_portare.length > 0 ? `
-                    <div style="font-weight:bold; color:var(--accent); margin:10px 0 5px 0;">🎒 Cosa portare</div>
-                    <div style="opacity:0.9;">${it.cosa_portare.join(', ')}</div>
-                ` : ''}
-            `;
-            
-            // APPENDCHILD: la posiziona in fondo, SOTTO la timeline
-            const timelineItems = document.getElementById('timeline-items');
-    timelineItems.after(infoBox);
-        }
         // 5. Inizializza la Mappa Leaflet
         function initMap() {
             if (map) map.remove();
