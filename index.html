@@ -422,19 +422,19 @@
         function renderGeneralInfo() {
             const sidebar = document.getElementById('timeline-sidebar');
             
-            // 1. Rimuove la scatola vecchia se esiste (evita doppioni)
+            // Rimuove la scatola vecchia se esiste
             const oldBox = document.getElementById('general-info-box');
             if(oldBox) oldBox.remove();
 
-            // 2. Crea la nuova scatola
+            // Crea la nuova scatola
             const infoBox = document.createElement('div');
             infoBox.id = 'general-info-box';
-            infoBox.style = "margin-bottom: 25px; padding: 15px; background: rgba(0,0,0,0.25); border-radius: 8px; font-size: 0.85em; border: 1px solid rgba(166, 138, 86, 0.4); box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);";
+            infoBox.style = "margin-top: 30px; margin-bottom: 25px; padding: 15px; background: rgba(0,0,0,0.25); border-radius: 8px; font-size: 0.85em; border: 1px solid rgba(166, 138, 86, 0.4); box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);";
             
             const it = currentItinerario;
             if(!it) return;
 
-            // 3. Riempie la scatola con i tuoi dati
+            // Riempie la scatola
             infoBox.innerHTML = `
                 <div style="font-weight:bold; color:var(--accent); margin-bottom:12px; text-transform:uppercase; border-bottom: 1px solid rgba(166, 138, 86, 0.3); padding-bottom:5px; font-size:1.1em;">
                     ℹ️ Info Generali
@@ -457,8 +457,8 @@
                 ` : ''}
             `;
             
-            // 4. PREPEND: La posiziona SOPRA a tutto il resto nella barra laterale
-            sidebar.prepend(infoBox);
+            // APPENDCHILD: la posiziona in fondo, SOTTO la timeline
+            sidebar.appendChild(infoBox);
         }
         // 5. Inizializza la Mappa Leaflet
         function initMap() {
